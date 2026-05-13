@@ -1,603 +1,813 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>德语反身动词 · 互动课件</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d1321">
+<title>Berlin, reflexiv — Reflexive Verben B1</title>
 <style>
-  :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --primary-dark: #1d4ed8;
-    --accent: #f59e0b;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #1e293b;
-    --text-light: #64748b;
-    --border: #e2e8f0;
-    --success: #22c55e;
-    --error: #ef4444;
-    --radius: 12px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-  
-  /* Header */
-  .header {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white; padding: 48px 20px 36px; text-align: center;
-  }
-  .header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 8px; }
-  .header p { font-size: 1rem; opacity: .85; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1321; --navy-dark:#080c17; --navy-light:#1a2744;
+  --berlin-gold:#f4a261; --berlin-gold-light:#fef0d9;
+  --berlin-gold-dim:#c68a4e; --berlin-rot:#c1121f;
+  --berlin-rot-light:#ef476f; --creme:#f7f3eb;
+  --creme-warm:#faf6ef; --weiss:#fdfdfc;
+  --text:#1e1e24; --text-light:#6b6b76;
+  --linie:#d4c9b8; --linie-fein:#e8e0d4;
+  --ubahn:#f3d03e; --ubahn-bg:rgba(243,208,62,0.12);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  --shadow:0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --radius:6px; --radius-lg:12px;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;font-size:16px;background:var(--navy)}
+body{
+  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  color:var(--text);line-height:1.6;overflow:hidden;height:100vh;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;text-size-adjust:100%;
+  background:var(--navy);user-select:none;
+}
+h1,h2,h3{font-family:'Georgia','Times New Roman',serif;line-height:1.25;letter-spacing:-0.01em}
+.de{font-style:normal;font-weight:500}.zh{font-size:.82em;color:var(--text-light);font-weight:400}
 
-  /* Navigation Tabs */
-  .tabs {
-    display: flex; gap: 4px; padding: 16px 20px 0;
-    max-width: 960px; margin: 0 auto; overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .tab-btn {
-    flex-shrink: 0; padding: 10px 20px; border: none; cursor: pointer;
-    background: transparent; color: var(--text-light); font-size: .9rem;
-    border-radius: 8px 8px 0 0; transition: all .2s; font-weight: 500;
-  }
-  .tab-btn:hover { background: #e2e8f0; color: var(--text); }
-  .tab-btn.active { background: var(--card); color: var(--primary); box-shadow: 0 -2px 4px rgba(0,0,0,0.05); }
+/* ===== Progress ===== */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--berlin-gold),var(--berlin-rot),var(--ubahn));z-index:1000;transition:width .5s var(--ease)}
+#progress-dots{position:fixed;top:14px;right:20px;display:flex;gap:6px;z-index:999}
+#progress-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s var(--ease)}
+#progress-dots .dot.active{background:var(--berlin-gold);transform:scale(1.4);box-shadow:0 0 8px rgba(244,162,97,.5)}
+#progress-dots .dot.done{background:var(--ubahn)}
 
-  /* Content */
-  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+/* ===== Slide ===== */
+.slide{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:60px 20px;position:relative;overflow:hidden;
+  background:var(--navy);
+}
+.slide::before{
+  content:'';position:absolute;top:-30%;right:-10%;width:60%;height:80%;
+  background:radial-gradient(ellipse at center,rgba(244,162,97,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.slide-inner{
+  max-width:900px;width:100%;background:var(--creme);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  padding:48px 44px;position:relative;z-index:1;
+  border:1px solid rgba(212,201,184,.3);
+  max-height:85vh;overflow-y:auto;
+}
+.slide-tag{
+  position:absolute;top:-14px;left:28px;font-family:'Inter',sans-serif;
+  font-size:.7rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;background:var(--navy);color:var(--berlin-gold);
+}
+.nav-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:28px;padding-top:16px;border-top:1px solid var(--linie-fein);
+}
+.nav-btn{
+  padding:8px 20px;border:none;border-radius:20px;cursor:pointer;
+  font-size:.82rem;font-weight:500;transition:all .2s var(--ease);
+  background:var(--navy);color:var(--berlin-gold);
+}
+.nav-btn:hover{background:var(--navy-light);transform:translateY(-1px)}
+.nav-btn:disabled{opacity:.3;cursor:default;transform:none}
+.nav-counter{font-size:.78rem;color:var(--text-light);letter-spacing:1px}
 
-  /* Cards */
-  .card {
-    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-    padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
-  }
-  .card h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; }
-  .card h4 { font-size: .95rem; color: var(--text); margin: 16px 0 8px; font-weight: 600; }
-  .card p, .card li { font-size: .92rem; color: var(--text-light); }
+/* ===== Slide 01: Einstieg ===== */
+.hero-sub{font-size:.82rem;color:var(--text-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.hero-title{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:6px;color:var(--navy)}
+.hero-desc{font-size:.92rem;color:var(--text-light);margin-bottom:24px}
+.scene-box{background:var(--weiss);border-radius:var(--radius);padding:20px;border:1px solid var(--linie-fein);margin-bottom:16px}
+.scene-box .speaker{font-size:.78rem;font-weight:600;color:var(--berlin-rot);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.scene-box .de{font-size:1rem;margin-bottom:2px}
+.scene-box .zh{font-size:.82rem}
+.scene-highlight{padding:2px 6px;border-radius:3px;cursor:pointer;transition:all .2s}
+.scene-highlight.mich{background:rgba(244,162,97,.2);color:#b87333}
+.scene-highlight.mir{background:rgba(193,18,31,.12);color:var(--berlin-rot)}
+.scene-highlight.sich{background:rgba(243,208,62,.25);color:#8b7500}
+.scene-highlight:hover{transform:scale(1.05)}
+.scene-note{font-size:.82rem;padding:10px 14px;background:var(--berlin-gold-light);border-radius:var(--radius);border-left:3px solid var(--berlin-gold);margin-top:8px}
 
-  /* Tables */
-  table {
-    width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .9rem;
-  }
-  th, td {
-    padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
-  }
-  th { background: #f1f5f9; color: var(--text); font-weight: 600; }
-  tr:hover { background: #f8fafc; }
-  .de { font-weight: 600; color: var(--primary); }
-  .zh { color: var(--text-light); }
+/* ===== Slide 02: Entdeckung ===== */
+.pronoun-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:16px 0}
+.pronoun-card{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px 18px;cursor:pointer;transition:all .2s var(--ease);position:relative}
+.pronoun-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--berlin-gold)}
+.pronoun-card .person{font-weight:600;font-size:.92rem;color:var(--text)}
+.pronoun-card .akk{font-size:.82rem;color:var(--berlin-rot);margin-top:4px}
+.pronoun-card .dat{font-size:.82rem;color:var(--berlin-gold-dim);margin-top:2px}
+.pronoun-card .hint{position:absolute;top:4px;right:8px;font-size:.65rem;color:var(--text-light)}
+.pronoun-card.revealed{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
+.pronoun-card .blank{display:inline-block;min-width:40px;border-bottom:2px dashed var(--berlin-gold);color:var(--berlin-rot);font-weight:600;padding:0 4px}
+.pronoun-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.pronoun-table th,.pronoun-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--linie-fein)}
+.pronoun-table th{background:var(--navy);color:var(--berlin-gold);font-weight:600;font-size:.78rem;letter-spacing:1px}
+.pronoun-table tr:last-child td{border-bottom:none}
+.pronoun-table .highlight{color:var(--berlin-rot);font-weight:600}
+.pronoun-table .same{background:var(--ubahn-bg);border-radius:3px;padding:2px 6px}
 
-  /* Flash Cards */
-  .flash-grid {
-    display: grid; gap: 12px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-  .flash-card {
-    perspective: 600px; height: 120px; cursor: pointer;
-  }
-  .flash-inner {
-    position: relative; width: 100%; height: 100%; transition: transform .5s;
-    transform-style: preserve-3d;
-  }
-  .flash-card.flipped .flash-inner { transform: rotateY(180deg); }
-  .flash-front, .flash-back {
-    position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: var(--radius); border: 1px solid var(--border);
-    padding: 12px; text-align: center; font-size: .9rem;
-  }
-  .flash-front { background: var(--card); color: var(--primary); font-weight: 600; }
-  .flash-back { background: var(--primary); color: white; transform: rotateY(180deg); }
+/* ===== Slide 03: Zwei Typen ===== */
+.type-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin:16px 0}
+.type-col{background:var(--weiss);border-radius:var(--radius);padding:16px;border:1px solid var(--linie-fein)}
+.type-col h4{margin-bottom:10px;font-size:.9rem}
+.type-col.echt{border-left:3px solid var(--berlin-rot)}
+.type-col.unecht{border-left:3px solid var(--berlin-gold)}
+.sort-item{background:var(--creme);padding:10px 14px;border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:all .2s;border:1px solid var(--linie-fein);font-size:.85rem}
+.sort-item:hover{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
+.sort-item .example{font-size:.78rem;color:var(--text-light);margin-top:3px}
+.sort-item .col-tag{font-size:.65rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:500}
+.sort-item .col-tag.echt{background:rgba(193,18,31,.1);color:var(--berlin-rot)}
+.sort-item .col-tag.unecht{background:rgba(244,162,97,.15);color:var(--berlin-gold-dim)}
+.sort-item.dropping{opacity:.5;border-style:dashed}
+.sort-drop{min-height:40px;border:2px dashed var(--linie);border-radius:var(--radius);padding:8px;margin-top:6px;transition:all .2s;text-align:center;font-size:.78rem;color:var(--text-light)}
+.sort-drop.hover{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
+.sort-drop .placed{display:inline-block;background:var(--berlin-gold-light);padding:4px 10px;border-radius:var(--radius);margin:3px;font-size:.82rem;border:1px solid var(--berlin-gold)}
+.sort-feedback{margin-top:12px;padding:10px;border-radius:var(--radius);font-size:.85rem;text-align:center;display:none}
+.sort-feedback.show{display:block}
+.sort-feedback.perfect{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
+.sort-feedback.wrong{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+.sort-feedback.partial{background:#fff3cd;color:#856404;border:1px solid #ffeeba}
 
-  /* Quiz */
-  .quiz-question { margin-bottom: 20px; }
-  .quiz-question p { font-weight: 600; margin-bottom: 8px; }
-  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-  .quiz-option {
-    padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px;
-    cursor: pointer; transition: all .2s; font-size: .9rem; background: var(--card);
-  }
-  .quiz-option:hover { border-color: var(--primary-light); background: #eff6ff; }
-  .quiz-option.selected { border-color: var(--primary); background: #dbeafe; }
-  .quiz-option.correct { border-color: var(--success); background: #dcfce7; }
-  .quiz-option.wrong { border-color: var(--error); background: #fef2f2; }
-  .quiz-result { margin-top: 16px; text-align: center; }
-  .quiz-result .score { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+/* ===== Slide 04: Position ===== */
+.pos-box{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.pos-box h4{font-size:.88rem;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.pos-tag{font-size:.65rem;padding:2px 10px;border-radius:10px;font-weight:600}
+.pos-tag.simple{background:rgba(244,162,97,.2);color:var(--berlin-gold-dim)}
+.pos-tag.modal{background:rgba(193,18,31,.1);color:var(--berlin-rot)}
+.pos-tag.neben{background:rgba(243,208,62,.25);color:#8b7500}
+.pos-example{padding:12px;background:var(--creme);border-radius:var(--radius);margin:8px 0;font-size:.88rem}
+.pos-example .sich-highlight{color:var(--berlin-rot);font-weight:600;padding:0 2px}
+.pos-exercise{margin-top:8px}
+.pos-exercise input{width:100%;padding:10px 14px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.85rem;outline:none;transition:border-color .2s;font-family:inherit}
+.pos-exercise input:focus{border-color:var(--berlin-gold)}
+.pos-exercise input.correct{border-color:#22c55e;background:#f0fdf4}
+.pos-exercise input.wrong{border-color:#ef4444;background:#fef2f2}
+.pos-check{font-size:.78rem;margin-top:4px;min-height:20px}
+.pos-check.ok{color:#22c55e}.pos-check.err{color:#ef4444}
+.translate-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:12px 0}
+@media(max-width:600px){.translate-grid{grid-template-columns:1fr}}
 
-  .btn {
-    padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer;
-    font-size: .9rem; font-weight: 500; transition: all .2s;
-    background: var(--primary); color: white;
-  }
-  .btn:hover { background: var(--primary-dark); }
-  .btn-outline {
-    background: transparent; border: 2px solid var(--primary); color: var(--primary);
-  }
-  .btn-outline:hover { background: var(--primary); color: white; }
+/* ===== Slide 05: Werkstatt ===== */
+.werkstatt-textarea{width:100%;min-height:120px;padding:14px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.88rem;font-family:inherit;outline:none;resize:vertical;transition:border-color .2s;background:var(--weiss)}
+.werkstatt-textarea:focus{border-color:var(--berlin-gold)}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0}
+.word-bank .chip{background:var(--creme);border:1px solid var(--linie);border-radius:16px;padding:4px 12px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--text)}
+.word-bank .chip:hover{background:var(--berlin-gold-light);border-color:var(--berlin-gold)}
+.word-bank .chip.used{opacity:.4;text-decoration:line-through}
+.beispiel-box{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:.85rem}
+.beispiel-box .de{color:var(--navy)}.beispiel-box .zh{color:var(--text-light)}
+.char-count{text-align:right;font-size:.72rem;color:var(--text-light);margin-top:4px}
 
-  /* Toggle sections */
-  .toggle-section { margin-bottom: 12px; }
-  .toggle-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 18px; background: var(--card); border: 1px solid var(--border);
-    border-radius: 8px; cursor: pointer; transition: all .2s; font-weight: 500;
-  }
-  .toggle-header:hover { border-color: var(--primary-light); }
-  .toggle-header .icon { transition: transform .3s; font-size: .8rem; }
-  .toggle-section.open .toggle-header .icon { transform: rotate(180deg); }
-  .toggle-body {
-    display: none; padding: 16px 18px; background: #f8fafc;
-    border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;
-  }
-  .toggle-section.open .toggle-body { display: block; }
+/* ===== Slide 06: Karten-Spiel ===== */
+.card-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin:16px 0}
+@media(max-width:500px){.card-grid{grid-template-columns:repeat(2,1fr)}}
+.game-card{perspective:600px;height:140px;cursor:pointer}
+.game-inner{position:relative;width:100%;height:100%;transition:transform .5s var(--ease);transform-style:preserve-3d}
+.game-card.flipped .game-inner{transform:rotateY(180deg)}
+.game-front,.game-back{
+  position:absolute;width:100%;height:100%;backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:var(--radius);padding:12px;text-align:center;
+  border:1px solid var(--linie-fein);
+}
+.game-front{background:var(--navy);color:var(--berlin-gold);font-weight:600;font-size:.9rem}
+.game-front .icon{font-size:1.8rem;margin-bottom:4px}
+.game-back{
+  background:var(--weiss);color:var(--text);transform:rotateY(180deg);
+  font-size:.78rem;line-height:1.4;
+}
+.game-back .verb{font-weight:600;color:var(--berlin-rot);font-size:.85rem}
+.game-back .example{font-size:.72rem;color:var(--text-light);margin-top:4px}
+.game-back .meaning{font-size:.72rem;color:var(--text-light);margin-top:2px}
+.game-progress{text-align:center;font-size:.78rem;color:var(--text-light);margin-bottom:10px}
+.game-btn-row{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.game-btn{padding:6px 16px;border:none;border-radius:16px;cursor:pointer;font-size:.78rem;transition:all .2s;background:var(--creme);border:1px solid var(--linie);color:var(--text)}
+.game-btn:hover{background:var(--berlin-gold-light);border-color:var(--berlin-gold)}
+.game-btn.primary{background:var(--navy);color:var(--berlin-gold)}
 
-  /* Verb list */
-  .verb-list { display: grid; gap: 8px; }
-  .verb-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 14px; background: var(--card); border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .verb-item .verb { font-weight: 600; color: var(--primary); }
-  .verb-item .meaning { color: var(--text-light); font-size: .85rem; }
-  .verb-item .example { font-size: .82rem; color: var(--text-light); font-style: italic; margin-top: 4px; }
+/* ===== Scrollbar ===== */
+.slide-inner::-webkit-scrollbar{width:4px}
+.slide-inner::-webkit-scrollbar-track{background:transparent}
+.slide-inner::-webkit-scrollbar-thumb{background:var(--linie);border-radius:2px}
 
-  /* Info banner */
-  .info-banner {
-    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;
-    padding: 14px 18px; margin-bottom: 16px; font-size: .85rem; line-height: 1.5;
-  }
+/* ===== Keyboard hint ===== */
+.kb-hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:1px;pointer-events:none;z-index:500;transition:opacity .5s}
+.kb-hint.hidden{opacity:0}
+.kb-hint kbd{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;font-family:inherit}
 
-  /* Mobile */
-  @media (max-width: 640px) {
-    .header { padding: 32px 16px 24px; }
-    .tabs { padding: 12px 12px 0; gap: 2px; }
-    .tab-btn { padding: 8px 14px; font-size: .82rem; }
-    .container { padding: 12px; }
-    .card { padding: 16px; }
-    .flash-grid { grid-template-columns: repeat(2, 1fr); }
-    .flash-card { height: 100px; }
-  }
+/* ===== Animation ===== */
+.fade-in{animation:fadeIn .5s var(--ease) forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-in-delay-1{animation-delay:.1s}.fade-in-delay-2{animation-delay:.2s}.fade-in-delay-3{animation-delay:.3s}.fade-in-delay-4{animation-delay:.4s}
+
+/* ===== Zitat ===== */
+.zitat{font-style:italic;text-align:center;padding:16px 0 8px;font-size:.85rem;color:var(--text-light)}
+.zitat .author{font-size:.75rem;color:var(--text-light);margin-top:4px;font-style:normal}
+
+/* ===== Mobile ===== */
+@media(max-width:640px){
+  .slide{padding:40px 12px}
+  .slide-inner{padding:32px 20px;max-height:82vh}
+  .pronoun-grid{grid-template-columns:1fr}
+  .type-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .game-card{height:120px}
+  .slide-tag{left:16px;font-size:.62rem}
+  #progress-dots{top:10px;right:12px}
+  .kb-hint{display:none}
+}
+
+/* ===== Touch swipe hint ===== */
+.touch-zone{position:fixed;top:0;bottom:0;width:30%;z-index:100}
+.touch-zone.left{left:0}.touch-zone.right{right:0}
+
+/* ===== Focus ===== */
+.slide-inner:focus{outline:none}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>📘 反身动词 Reflexive Verben</h1>
-  <p>B1 德语 · 互动课件 · 点击翻转 · 边学边练</p>
-</div>
+<!-- Progress -->
+<div id="progress-bar"></div>
+<div id="progress-dots"></div>
 
-<div class="tabs" id="tabs">
-  <button class="tab-btn active" data-tab="overview">📖 概述</button>
-  <button class="tab-btn" data-tab="pronouns">🔄 反身代词</button>
-  <button class="tab-btn" data-tab="verbs">📚 动词列表</button>
-  <button class="tab-btn" data-tab="position">📍 位置规则</button>
-  <button class="tab-btn" data-tab="quiz">✍️ 练习</button>
-</div>
+<!-- Touch Zones -->
+<div class="touch-zone left" onclick="prevSlide()"></div>
+<div class="touch-zone right" onclick="nextSlide()"></div>
 
-<div class="container">
+<!-- Keyboard Hint -->
+<div class="kb-hint" id="kbHint"><kbd>←</kbd> <kbd>→</kbd> 翻页 · 点击翻转卡片</div>
 
-<!-- ====== 概述 ====== -->
-<div class="tab-content active" id="tab-overview">
+<!-- ===== SLIDE 01 · Einstieg ===== -->
+<div class="slide" data-slide="0">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">01 · Einstieg</div>
 
-  <div class="card">
-    <h3>什么是反身动词？</h3>
-    <p>德语中，反身动词（Reflexive Verben）是指动词的动作回到主语本身——主语和宾语指向同一个人或事物。</p>
-    <div class="info-banner" style="margin-top: 12px;">
-      <strong>💡 核心公式：</strong> 主语 + 动词 + <strong>sich</strong>（反身代词）
+    <div class="hero-sub">Reflexive Verben · B1</div>
+    <h1 class="hero-title">Berlin, <span style="color:var(--berlin-rot)">reflexiv</span></h1>
+    <p class="hero-desc">在柏林的一天，反身动词无处不在。你能发现规律吗？</p>
+
+    <div class="scene-box">
+      <div class="speaker">☕ Morgens im Café · 早上在咖啡馆</div>
+      <div class="de">„Ich freue <span class="scene-highlight mich" onclick="highlight('mich')">mich</span> auf den Kaffee! <br> Und ich bestelle <span class="scene-highlight mir" onclick="highlight('mir')">mir</span> ein Croissant dazu."</div>
+      <div class="zh">我很期待这杯咖啡！再给自己加一个可颂。</div>
     </div>
-    <div style="display: grid; gap: 8px; margin-top: 12px;">
-      <div class="verb-item"><div><span class="verb">Ich wasche <strong>mich</strong>.</span><div class="example">我洗（自己）。</div></div></div>
-      <div class="verb-item"><div><span class="verb">Er freut <strong>sich</strong>.</span><div class="example">他很高兴。</div></div></div>
+
+    <div class="scene-box">
+      <div class="speaker">🚇 In der U-Bahn · 在地铁里</div>
+      <div class="de">„Er setzt <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> neben mich <br> und konzentriert <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> auf sein Buch."</div>
+      <div class="zh">他坐到我旁边，专心看他的书。</div>
+    </div>
+
+    <div class="scene-box">
+      <div class="speaker">🖼️ Nachmittags im Museum · 下午在博物馆</div>
+      <div class="de">„Ich interessiere <span class="scene-highlight mich" onclick="highlight('mich')">mich</span> für die Ausstellung. <br> Meine Freundin ärgert <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> über den Eintrittspreis."</div>
+      <div class="zh">我对展览很感兴趣。我朋友对门票价格很不满。</div>
+    </div>
+
+    <div class="scene-note" id="scene-note">
+      💡 <strong>Beachte:</strong> <span class="scene-highlight mich">mich</span> / <span class="scene-highlight mir">mir</span> / <span class="scene-highlight sich">sich</span> — 哪个对应哪个人称？翻到下一页找答案。
+    </div>
+
+    <div class="nav-row">
+      <div></div>
+      <span class="nav-counter">1 / 6</span>
+      <button class="nav-btn" onclick="nextSlide()">Entdeckung →</button>
     </div>
   </div>
+</div>
 
-  <div class="card">
-    <h3>🔹 真反身 vs 假反身</h3>
-    <div class="toggle-section open">
-      <div class="toggle-header" onclick="toggleSection(this)">
-        <span>✅ 真反身动词 <span style="color:#64748b;font-size:.82rem;">（echte reflexive Verben）</span></span>
-        <span class="icon">▼</span>
+<!-- ===== SLIDE 02 · Entdeckung ===== -->
+<div class="slide" data-slide="1">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">02 · Entdeckung</div>
+
+    <h2 style="font-size:1.4rem;margin-bottom:4px">反身代词 · 规律发现</h2>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">点击卡片，<strong>自己填空</strong>——看看你能不能找出规律</p>
+
+    <div class="pronoun-grid" id="pronounGrid"></div>
+
+    <div id="pronounTable" style="display:none" class="fade-in">
+      <div style="margin-top:16px">
+        <h3 style="font-size:.95rem;margin-bottom:8px;color:var(--navy)">📊 完整对照表</h3>
+        <table class="pronoun-table">
+          <thead><tr><th>人称</th><th>Akkusativ (4格)</th><th>Dativ (3格)</th></tr></thead>
+          <tbody>
+            <tr><td>ich</td><td>mich</td><td>mir</td></tr>
+            <tr><td>du</td><td>dich</td><td>dir</td></tr>
+            <tr><td>er / sie / es</td><td class="highlight">sich <span class="same">← 相同</span></td><td class="highlight">sich <span class="same">← 相同</span></td></tr>
+            <tr><td>wir</td><td>uns</td><td>uns</td></tr>
+            <tr><td>ihr</td><td>euch</td><td>euch</td></tr>
+            <tr><td>sie / Sie</td><td class="highlight">sich <span class="same">← 相同</span></td><td class="highlight">sich <span class="same">← 相同</span></td></tr>
+          </tbody>
+        </table>
+        <div class="zitat">„Ein Mensch, der sich kennt, kennt die Welt." <div class="author">— Berliner Weisheit</div></div>
       </div>
-      <div class="toggle-body">
-        <p><strong>必须</strong> 与反身代词连用，去掉反身代词后动词不再有意义或不成立。</p>
-        <div style="margin-top: 8px;">
-          <div class="verb-item"><div><span class="verb">sich beeilen</span><div class="meaning">赶紧 · Ich beeile <strong>mich</strong>. ✗ Ich beeile.</div></div></div>
-          <div class="verb-item"><div><span class="verb">sich bedanken</span><div class="meaning">感谢 · Wir bedanken <strong>uns</strong>. ✗ Wir bedanken.</div></div></div>
-          <div class="verb-item"><div><span class="verb">sich erinnern</span><div class="meaning">记起 · Er erinnert <strong>sich</strong>. ✗ Er erinnert.</div></div></div>
-          <div class="verb-item"><div><span class="verb">sich auskennen</span><div class="meaning">熟悉 · Sie kennt <strong>sich</strong> aus. ✗ Sie kennt aus.</div></div></div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Einstieg</button>
+      <span class="nav-counter">2 / 6</span>
+      <button class="nav-btn" onclick="nextSlide()">Zwei Typen →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 03 · Zwei Typen ===== -->
+<div class="slide" data-slide="2">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">03 · Zwei Typen</div>
+
+    <h2 style="font-size:1.4rem;margin-bottom:4px">真反身 vs 假反身</h2>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">将动词拖入正确的分类区域</p>
+
+    <div class="type-grid">
+      <div class="type-col echt">
+        <h4>✅ 真反身 <span style="font-weight:400;color:var(--text-light);font-size:.78rem">(echt)</span></h4>
+        <p style="font-size:.72rem;color:var(--text-light);margin-bottom:8px">必须带 sich，去掉后不成立</p>
+        <div class="sort-drop" id="dropEcht" ondrop="drop(event,'echt')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')">
+          <div style="opacity:.4;pointer-events:none">拖到这里</div>
+        </div>
+      </div>
+      <div class="type-col unecht">
+        <h4>⚠️ 假反身 <span style="font-weight:400;color:var(--text-light);font-size:.78rem">(unecht)</span></h4>
+        <p style="font-size:.72rem;color:var(--text-light);margin-bottom:8px">可以带其他宾语</p>
+        <div class="sort-drop" id="dropUnecht" ondrop="drop(event,'unecht')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')">
+          <div style="opacity:.4;pointer-events:none">拖到这里</div>
         </div>
       </div>
     </div>
 
-    <div class="toggle-section">
-      <div class="toggle-header" onclick="toggleSection(this)">
-        <span>⚠️ 假反身动词 <span style="color:#64748b;font-size:.82rem;">（unechte reflexive Verben）</span></span>
-        <span class="icon">▼</span>
-      </div>
-      <div class="toggle-body">
-        <p>可以带反身代词（动作回指主语），也可以带其他宾语。去掉反身代词后动词依然成立。</p>
-        <div style="margin-top: 8px;">
-          <div class="verb-item">
-            <div><span class="verb">sich waschen</span><div class="meaning">洗（自己）</div>
-            <div class="example">Ich wasche <strong>mich</strong>. → Ich wasche <strong>das Kind</strong>.</div></div>
-          </div>
-          <div class="verb-item">
-            <div><span class="verb">sich anziehen</span><div class="meaning">穿衣服</div>
-            <div class="example">Er zieht <strong>sich</strong> an. → Er zieht <strong>den Mantel</strong> an.</div></div>
-          </div>
-          <div class="verb-item">
-            <div><span class="verb">sich setzen</span><div class="meaning">坐下</div>
-            <div class="example">Sie setzt <strong>sich</strong>. → Sie setzt <strong>das Kind</strong> auf den Stuhl.</div></div>
-          </div>
-          <div class="verb-item">
-            <div><span class="verb">sich verstecken</span><div class="meaning">躲藏</div>
-            <div class="example">Wir verstecken <strong>uns</strong>. → Wir verstecken <strong>das Geschenk</strong>.</div></div>
-          </div>
+    <div id="sortItems" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px"></div>
+    <div class="sort-feedback" id="sortFeedback"></div>
+
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Entdeckung</button>
+      <span class="nav-counter">3 / 6</span>
+      <button class="nav-btn" onclick="nextSlide()">Position →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 04 · Position ===== -->
+<div class="slide" data-slide="3">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">04 · Position</div>
+
+    <h2 style="font-size:1.4rem;margin-bottom:4px">📍 <em>sich</em> 的位置规则</h2>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">三种句式，三种位置。在框里输入答案试试看。</p>
+
+    <div class="pos-box">
+      <h4><span class="pos-tag simple">Einfacher Satz</span> 简单陈述句</h4>
+      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px"><em>sich</em> 紧跟在动词之后</p>
+      <div class="pos-example">Er freut <span class="sich-highlight">sich</span> über das Geschenk.</div>
+      <div class="pos-exercise">
+        <p style="font-size:.82rem;margin-bottom:4px">✏️ 填入正确的反身代词：</p>
+        <div class="translate-grid">
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">他赶紧。</p><input type="text" class="pos-input" data-answer="sich" data-idx="0" placeholder="Er beeilt ___" oninput="checkPosInput(this)"><div class="pos-check"></div></div>
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我们休息。</p><input type="text" class="pos-input" data-answer="uns" data-idx="1" placeholder="Wir ruhen ___ aus" oninput="checkPosInput(this)"><div class="pos-check"></div></div>
         </div>
-        <div class="info-banner" style="margin-top:12px;">
-          <strong>💡 判断技巧：</strong> 如果动词可以带一个<em>不同</em>于主语的名词宾语 → 假反身。如果动词只能跟反身代词搭配 → 真反身。
+      </div>
+    </div>
+
+    <div class="pos-box">
+      <h4><span class="pos-tag modal">Modalverb</span> 情态动词句</h4>
+      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px">情态动词占第二位，<em>sich</em> + 实义动词在句末</p>
+      <div class="pos-example">Er kann <span class="sich-highlight">sich</span> nicht konzentrieren.</div>
+      <div class="pos-exercise">
+        <div class="translate-grid">
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">她必须抓紧。</p><input type="text" class="pos-input" data-answer="sich" data-idx="2" placeholder="Sie muss ___ beeilen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我们得坐下。</p><input type="text" class="pos-input" data-answer="uns" data-idx="3" placeholder="Wir müssen ___ setzen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h3>⚡ 三类反身代词（按格分类）</h3>
-    <div class="info-banner">
-      <strong>Akkusativ (第四格)：</strong> 大多数动词使用第四格反身代词。<br>
-      <strong>Dativ (第三格)：</strong> 动词涉及"给/对/为"自己时，反身代词用第三格。<br>
-      <strong>固定搭配：</strong> 有些动词固定接第四格或第三格反身代词，直接记住即可。
-    </div>
-  </div>
-</div>
-
-<!-- ====== 反身代词表 ====== -->
-<div class="tab-content" id="tab-pronouns">
-  <div class="card">
-    <h3>反身代词表</h3>
-    <p style="margin-bottom:8px;">点击卡片翻转，记忆人称对应的反身代词。</p>
-    <div class="flash-grid" id="pronoun-flash">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>📊 完整对照表</h3>
-    <table>
-      <thead><tr><th>人称</th><th>Akkusativ (第四格)</th><th>Dativ (第三格)</th></tr></thead>
-      <tbody>
-        <tr><td><span class="de">ich</span></td><td><span class="de">mich</span></td><td><span class="de">mir</span></td></tr>
-        <tr><td><span class="de">du</span></td><td><span class="de">dich</span></td><td><span class="de">dir</span></td></tr>
-        <tr><td><span class="de">er/sie/es</span></td><td><span class="de" style="font-weight:700;color:#dc2626;">sich</span></td><td><span class="de" style="font-weight:700;color:#dc2626;">sich</span></td></tr>
-        <tr><td><span class="de">wir</span></td><td><span class="de">uns</span></td><td><span class="de">uns</span></td></tr>
-        <tr><td><span class="de">ihr</span></td><td><span class="de">euch</span></td><td><span class="de">euch</span></td></tr>
-        <tr><td><span class="de">sie/Sie</span></td><td><span class="de" style="font-weight:700;color:#dc2626;">sich</span></td><td><span class="de" style="font-weight:700;color:#dc2626;">sich</span></td></tr>
-      </tbody>
-    </table>
-    <div class="info-banner" style="margin-top:8px;">
-      🔑 注意：第三人称（er/sie/es/sie/Sie）的 Akkusativ 和 Dativ 反身代词<b>相同</b>，都是 <strong>sich</strong>。<br>
-      第一、二人称的单复数则需要区分 mich/mir, dich/dir, uns/uns, euch/euch。
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>📝 第三格反身动词示例（Dativ）</h3>
-    <p>以下动词的宾语（反身代词）使用 Dativ：</p>
-    <div style="display: grid; gap: 8px; margin-top: 8px;">
-      <div class="verb-item"><div><span class="verb">sich (Dat.) etwas vorstellen</span><div class="meaning">想象 · Ich stelle <strong>mir</strong> das vor.</div></div></div>
-      <div class="verb-item"><div><span class="verb">sich (Dat.) etwas notieren</span><div class="meaning">记下 · Er notiert <strong>sich</strong> die Adresse.</div></div></div>
-      <div class="verb-item"><div><span class="verb">sich (Dat.) etwas kaufen</span><div class="meaning">给自己买 · Sie kauft <strong>sich</strong> ein Buch.</div></div></div>
-      <div class="verb-item"><div><span class="verb">sich (Dat.) wehtun</span><div class="meaning">弄伤自己 · Du tust <strong>dir</strong> weh.</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ====== 动词列表 ====== -->
-<div class="tab-content" id="tab-verbs">
-  <div class="card">
-    <h3>📚 常用反身动词（Akkusativ）</h3>
-    <div id="reflexive-verb-list-akk"></div>
-  </div>
-  <div class="card">
-    <h3>📚 常用反身动词（Dativ）</h3>
-    <div id="reflexive-verb-list-dat"></div>
-  </div>
-  <div class="card">
-    <h3>📚 带介词的固定搭配</h3>
-    <p>这些动词后接固定介词，介词后的宾语是反身代词或名词：</p>
-    <div id="prepositional-verbs"></div>
-  </div>
-</div>
-
-<!-- ====== 位置规则 ====== -->
-<div class="tab-content" id="tab-position">
-  <div class="card">
-    <h3>📍 <em>sich</em> 在句子中的位置规则</h3>
-    <p>反身代词 <em>sich</em> 的位置取决于动词类型和句子结构。以下是三条核心规则：</p>
-  </div>
-
-  <div class="toggle-section open">
-    <div class="toggle-header" onclick="toggleSection(this)">
-      <span>规则一：简单陈述句 — <em>sich</em> 紧跟在动词之后</span>
-      <span class="icon">▼</span>
-    </div>
-    <div class="toggle-body">
-      <p>在主语+动词+其他成分的简单句中，<strong><em>sich</em> 放在动词之后，时间状语之前</strong>（如果有）。</p>
-      <div style="margin-top:8px;">
-        <div class="verb-item"><div><span class="verb">Er freut <strong>sich</strong> über das Geschenk.</span><div class="example">他因为礼物而高兴。</div></div></div>
-        <div class="verb-item"><div><span class="verb">Wir treffen <strong>uns</strong> morgen.</span><div class="example">我们明天见面。</div></div></div>
+    <div class="pos-box">
+      <h4><span class="pos-tag neben">Nebensatz</span> 从句</h4>
+      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px">动词在从句末，<em>sich</em> 在连词之后、主语之后</p>
+      <div class="pos-example">Ich glaube, dass er <span class="sich-highlight">sich</span> freut.</div>
+      <div class="pos-exercise">
+        <div class="translate-grid">
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">她说我们该抓紧。</p><input type="text" class="pos-input" data-answer="uns" data-idx="4" placeholder="Sie sagt, dass wir ___ beeilen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
+          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我知道他感兴趣。</p><input type="text" class="pos-input" data-answer="sich" data-idx="5" placeholder="Ich weiß, dass er ___ interessiert." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="toggle-section">
-    <div class="toggle-header" onclick="toggleSection(this)">
-      <span>规则二：情态动词句 — <em>sich</em> 在实义动词前</span>
-      <span class="icon">▼</span>
-    </div>
-    <div class="toggle-body">
-      <p>情态动词（kann, muss, will 等）占据第二位，<strong>实义动词以不定式放在句末，<em>sich</em> 放在句末实义动词之前</strong>。如果句中有宾语，优先级：主语 → <em>sich</em> → 时间/方式 → 地点 → 实义动词。</p>
-      <div style="margin-top:8px;">
-        <div class="verb-item"><div><span class="verb">Er kann <strong>sich</strong> nicht konzentrieren.</span><div class="example">他无法集中注意力。</div></div></div>
-        <div class="verb-item"><div><span class="verb">Sie muss <strong>sich</strong> beeilen.</span><div class="example">她必须抓紧。</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="toggle-section">
-    <div class="toggle-header" onclick="toggleSection(this)">
-      <span>规则三：从句 — <em>sich</em> 紧跟在连词/关系代词之后</span>
-      <span class="icon">▼</span>
-    </div>
-    <div class="toggle-body">
-      <p>在 dass-, weil-, obwohl- 等从句中，<strong>动词放在句末，<em>sich</em> 放在从句开头（连词之后）</strong>。</p>
-      <div style="margin-top:8px;">
-        <div class="verb-item"><div><span class="verb">Ich glaube, dass er <strong>sich</strong> freut.</span><div class="example">我相信他很高兴。</div></div></div>
-        <div class="verb-item"><div><span class="verb">Sie fragt, ob wir <strong>uns</strong> beeilen müssen.</span><div class="example">她问我们是否必须抓紧。</div></div></div>
-      </div>
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Zwei Typen</button>
+      <span class="nav-counter">4 / 6</span>
+      <button class="nav-btn" onclick="nextSlide()">Werkstatt →</button>
     </div>
   </div>
 </div>
 
-<!-- ====== 练习 ====== -->
-<div class="tab-content" id="tab-quiz">
-  <div class="card">
-    <h3>✍️ 练习一下</h3>
-    <p>选择正确的反身代词完成句子。</p>
-    <div id="quiz-container"></div>
-    <div class="quiz-result" id="quiz-result">
-      <div class="score" id="quiz-score">0 / 0</div>
-      <button class="btn" onclick="resetQuiz()" style="margin-top:12px;">🔄 重新开始</button>
+<!-- ===== SLIDE 05 · Werkstatt ===== -->
+<div class="slide" data-slide="4">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">05 · Werkstatt</div>
+
+    <h2 style="font-size:1.4rem;margin-bottom:4px">📝 Ein Tag in Berlin</h2>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:8px">用反身动词写一段「在柏林的一天」。点击词汇库中的词插入。</p>
+
+    <div class="beispiel-box">
+      <strong>📋 范文参考：</strong><br>
+      <span class="de">Ich stehe auf, <b>wasche mich</b> und ziehe <b>mir</b> meinen Lieblingsmantel an. In der U-Bahn <b>setze ich mich</b> ans Fenster und <b>freue mich</b> auf den Tag. Im Café bestelle ich <b>mir</b> einen Latte. Am Abend <b>treffe ich mich</b> mit Freunden. Wir <b>unterhalten uns</b> stundenlang. Ich <b>fühle mich</b> wohl in dieser Stadt.</span>
+      <div class="zh" style="margin-top:4px">我起床，洗漱，穿上我最爱的大衣。在地铁里我坐到窗边，期待着新的一天。在咖啡馆我点了杯拿铁。晚上我和朋友见面，聊了几个小时。在这座城市我感觉很自在。</div>
+    </div>
+
+    <div class="word-bank" id="wordBank"></div>
+
+    <textarea class="werkstatt-textarea" id="werkstattInput" placeholder="Schreib deinen eigenen Text... (用反身动词写一段柏林日常)" oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0 字符</div>
+
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Position</button>
+      <span class="nav-counter">5 / 6</span>
+      <button class="nav-btn" onclick="nextSlide()">Karten-Spiel →</button>
     </div>
   </div>
 </div>
 
+<!-- ===== SLIDE 06 · Karten-Spiel ===== -->
+<div class="slide" data-slide="5">
+  <div class="slide-inner" tabindex="-1">
+    <div class="slide-tag">06 · Karten-Spiel</div>
+
+    <h2 style="font-size:1.4rem;margin-bottom:4px">🃏 Notfall-Karten</h2>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:4px">这个 B1 反身动词够你用了。点击翻转，看例句。</p>
+    <div class="game-progress" id="gameProgress">0 / 0 打开</div>
+
+    <div class="card-grid" id="cardGrid"></div>
+
+    <div class="game-btn-row">
+      <button class="game-btn" onclick="flipAllCards()">🔄 全部翻开</button>
+      <button class="game-btn primary" onclick="resetAllCards()">🔁 重新开始</button>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Werkstatt</button>
+      <span class="nav-counter">6 / 6</span>
+      <button class="nav-btn" onclick="goToSlide(0)">🔁 从头开始</button>
+    </div>
+  </div>
 </div>
 
 <script>
-// ====== Tab Navigation ======
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-  });
-});
+// ===== Slide Navigation =====
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+let slideCount = slides.length;
 
-// ====== Toggle Sections ======
-function toggleSection(el) {
-  el.closest('.toggle-section').classList.toggle('open');
+function showSlide(idx){
+  idx = Math.max(0, Math.min(slideCount - 1, idx));
+  slides.forEach((s,i)=>{
+    s.style.display = i === idx ? 'flex' : 'none';
+  });
+  currentSlide = idx;
+  updateProgress();
+  updateKBHint();
+  // Focus slide-inner for keyboard events
+  document.querySelectorAll('.slide-inner')[idx]?.focus();
 }
 
-// ====== Flash Cards ======
-const pronounData = [
-  { front: 'ich', back: 'mich (Akk.) / mir (Dat.)' },
-  { front: 'du', back: 'dich (Akk.) / dir (Dat.)' },
-  { front: 'er / sie / es', back: 'sich (Akk.) / sich (Dat.)' },
-  { front: 'wir', back: 'uns (Akk.) / uns (Dat.)' },
-  { front: 'ihr', back: 'euch (Akk.) / euch (Dat.)' },
-  { front: 'sie / Sie', back: 'sich (Akk.) / sich (Dat.)' },
-];
+function nextSlide(){ showSlide(currentSlide + 1); }
+function prevSlide(){ showSlide(currentSlide - 1); }
+function goToSlide(idx){ showSlide(idx); }
 
-const flashContainer = document.getElementById('pronoun-flash');
-pronounData.forEach(p => {
-  const div = document.createElement('div');
-  div.className = 'flash-card';
-  div.innerHTML = `<div class="flash-inner"><div class="flash-front">${p.front}</div><div class="flash-back">${p.back}</div></div>`;
-  div.addEventListener('click', () => div.classList.toggle('flipped'));
-  flashContainer.appendChild(div);
+function updateProgress(){
+  const pct = ((currentSlide + 1) / slideCount) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active', i === currentSlide);
+    d.classList.toggle('done', i < currentSlide);
+  });
+}
+
+function updateKBHint(){
+  const h = document.getElementById('kbHint');
+  if(currentSlide === slideCount - 1){
+    h.classList.add('hidden');
+  } else {
+    h.classList.remove('hidden');
+  }
+}
+
+// ===== Keyboard =====
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight'){ e.preventDefault(); nextSlide(); }
+  if(e.key === 'ArrowLeft'){ e.preventDefault(); prevSlide(); }
+  if(e.key === 'Home'){ e.preventDefault(); goToSlide(0); }
+  if(e.key === 'End'){ e.preventDefault(); goToSlide(slideCount - 1); }
 });
 
-// ====== Verb Data ======
-const verbsAkk = [
-  { verb: 'sich freuen', meaning: '感到高兴', example: 'Ich freue mich auf den Urlaub.' },
-  { verb: 'sich ärgern', meaning: '生气', example: 'Er ärgert sich über den Fehler.' },
-  { verb: 'sich interessieren', meaning: '感兴趣', example: 'Sie interessiert sich für Musik.' },
-  { verb: 'sich konzentrieren', meaning: '集中注意力', example: 'Ich konzentriere mich auf die Arbeit.' },
-  { verb: 'sich beeilen', meaning: '赶紧', example: 'Wir müssen uns beeilen.' },
-  { verb: 'sich ausruhen', meaning: '休息', example: 'Nach der Arbeit ruhe ich mich aus.' },
-  { verb: 'sich erinnern', meaning: '记起', example: 'Erinnert er sich an mich?' },
-  { verb: 'sich auskennen', meaning: '熟悉', example: 'Ich kenne mich in Berlin aus.' },
-  { verb: 'sich verlieben', meaning: '爱上', example: 'Sie hat sich in ihn verliebt.' },
-  { verb: 'sich anmelden', meaning: '报名/注册', example: 'Ich melde mich zum Kurs an.' },
-  { verb: 'sich setzen', meaning: '坐下', example: 'Setz dich bitte!' },
-  { verb: 'sich waschen', meaning: '洗（自己）', example: 'Ich wasche mich jeden Morgen.' },
+// Touch swipe
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].screenX;
+  if(Math.abs(diff) > 60){
+    if(diff > 0) nextSlide(); else prevSlide();
+  }
+});
+
+// ===== Slide 01: Einstieg highlight =====
+function highlight(type){
+  document.querySelectorAll('.scene-highlight').forEach(el => {
+    el.style.transform = el.classList.contains(type) ? 'scale(1.15) translateY(-2px)' : '';
+    el.style.fontWeight = el.classList.contains(type) ? '700' : '';
+  });
+  const note = document.getElementById('scene-note');
+  if(type === 'mich') note.innerHTML = '💡 <strong>ich → mich</strong> (Akkusativ): 当动作的承受者就是主语自己';
+  else if(type === 'mir') note.innerHTML = '💡 <strong>ich → mir</strong> (Dativ): 当涉及"给/为/对自己"做某事';
+  else if(type === 'sich') note.innerHTML = '💡 <strong>er/sie/es → sich</strong>: 第三人称不分 Akk/Dativ，都用 <strong>sich</strong>';
+}
+
+// ===== Slide 02: Pronoun discovery =====
+const pronouns = [
+  {person:'ich', akk:'mich', dat:'mir'},
+  {person:'du', akk:'dich', dat:'dir'},
+  {person:'er / sie / es', akk:'sich', dat:'sich'},
+  {person:'wir', akk:'uns', dat:'uns'},
+  {person:'ihr', akk:'euch', dat:'euch'},
+  {person:'sie / Sie', akk:'sich', dat:'sich'},
 ];
 
-const verbsDat = [
-  { verb: 'sich etwas vorstellen', meaning: '想象', example: 'Ich kann mir das gut vorstellen.' },
-  { verb: 'sich etwas notieren', meaning: '记下', example: 'Er notiert sich die Telefonnummer.' },
-  { verb: 'sich etwas kaufen', meaning: '给自己买', example: 'Ich kaufe mir ein neues Handy.' },
-  { verb: 'sich etwas merken', meaning: '记住', example: 'Ich merke mir deine Adresse.' },
-  { verb: 'sich wehtun', meaning: '弄伤自己', example: 'Pass auf, sonst tust du dir weh!' },
-  { verb: 'sich etwas überlegen', meaning: '考虑', example: 'Ich überlege mir die Antwort.' },
+const grid = document.getElementById('pronounGrid');
+pronouns.forEach((p,i)=>{
+  const card = document.createElement('div');
+  card.className = 'pronoun-card';
+  card.dataset.idx = i;
+  card.innerHTML = `
+    <div class="person">${p.person}</div>
+    <div class="akk">Akk: <span class="blank" data-akk="${p.akk}">___</span></div>
+    <div class="dat">Dat: <span class="blank" data-dat="${p.dat}">___</span></div>
+    <div class="hint">点击填空</div>
+  `;
+  card.addEventListener('click', () => {
+    if(card.classList.contains('revealed')) return;
+    card.classList.add('revealed');
+    const blanks = card.querySelectorAll('.blank');
+    blanks[0].textContent = p.akk;
+    blanks[0].style.borderBottom = '2px solid #22c55e';
+    blanks[1].textContent = p.dat;
+    blanks[1].style.borderBottom = '2px solid #22c55e';
+    card.querySelector('.hint').textContent = '✅';
+    // Show table after all revealed
+    if(document.querySelectorAll('.pronoun-card.revealed').length === pronouns.length){
+      setTimeout(() => {
+        document.getElementById('pronounTable').style.display = 'block';
+      }, 400);
+    }
+  });
+  grid.appendChild(card);
+});
+
+// ===== Slide 03: Sort game =====
+const sortItems = [
+  {verb:'sich beeilen', text:'赶紧', type:'echt', tag:'真'},
+  {verb:'sich bedanken', text:'感谢', type:'echt', tag:'真'},
+  {verb:'sich erinnern', text:'记起', type:'echt', tag:'真'},
+  {verb:'sich auskennen', text:'熟悉', type:'echt', tag:'真'},
+  {verb:'sich waschen', text:'洗（自己）', type:'unecht', tag:'假'},
+  {verb:'sich anziehen', text:'穿衣服', type:'unecht', tag:'假'},
+  {verb:'sich setzen', text:'坐下', type:'unecht', tag:'假'},
+  {verb:'sich verstecken', text:'躲藏', type:'unecht', tag:'假'},
 ];
 
-const prepVerbs = [
-  { verb: 'sich freuen auf + Akk', meaning: '期待（未来）', example: 'Ich freue mich auf die Ferien.' },
-  { verb: 'sich freuen über + Akk', meaning: '为…高兴（已发生）', example: 'Er freut sich über das Geschenk.' },
-  { verb: 'sich ärgern über + Akk', meaning: '为…生气', example: 'Sie ärgert sich über den Lärm.' },
-  { verb: 'sich interessieren für + Akk', meaning: '对…感兴趣', example: 'Ich interessiere mich für Kunst.' },
-  { verb: 'sich kümmern um + Akk', meaning: '关心/照顾', example: 'Sie kümmert sich um die Kinder.' },
-  { verb: 'sich gewöhnen an + Akk', meaning: '习惯', example: 'Ich gewöhne mich an das Wetter.' },
-  { verb: 'sich entscheiden für + Akk', meaning: '决定', example: 'Er entscheidet sich für den Job.' },
-  { verb: 'sich bewerben um + Akk', meaning: '申请', example: 'Sie bewirbt sich um die Stelle.' },
-  { verb: 'sich erinnern an + Akk', meaning: '记起', example: 'Erinnere dich an unsere Absprache!' },
-  { verb: 'sich verlassen auf + Akk', meaning: '信任/依靠', example: 'Ich verlasse mich auf dich.' },
-  { verb: 'sich vorbereiten auf + Akk', meaning: '为…做准备', example: 'Wir bereiten uns auf die Prüfung vor.' },
-  { verb: 'sich schützen vor + Dat', meaning: '保护自己免受…', example: 'Schützt euch vor der Sonne!' },
-];
+let placedItems = {echt:[], unecht:[]};
+let unplaced = [...sortItems];
 
-function renderVerbList(data, containerId) {
-  const c = document.getElementById(containerId);
-  if (!c) return;
-  c.innerHTML = data.map(v => `
-    <div class="verb-item">
-      <div>
-        <div class="verb">${v.verb}</div>
-        <div class="meaning">${v.meaning}</div>
-        <div class="example">${v.example}</div>
-      </div>
+function renderSortItems(){
+  const container = document.getElementById('sortItems');
+  container.innerHTML = unplaced.map((item,i) => `
+    <div class="sort-item" draggable="true" data-idx="${i}"
+         ondragstart="dragStart(event,${i})"
+         onmouseenter="showTagTip(this,'${item.tag === '真' ? 'echt' : 'unecht'}')"
+         onmouseleave="this.querySelector('.col-tag')?.remove()">
+      <strong>${item.verb}</strong> <span style="color:var(--text-light);font-size:.78rem">${item.text}</span>
     </div>
   `).join('');
 }
 
-renderVerbList(verbsAkk, 'reflexive-verb-list-akk');
-renderVerbList(verbsDat, 'reflexive-verb-list-dat');
-renderVerbList(prepVerbs, 'prepositional-verbs');
+function showTagTip(el, type){
+  let tag = document.createElement('span');
+  tag.className = `col-tag ${type}`;
+  tag.textContent = type === 'echt' ? '真反身' : '假反身';
+  tag.style.marginLeft = '6px';
+  tag.style.fontSize = '.65rem';
+  el.appendChild(tag);
+}
 
-// ====== Quiz ======
-const quizQuestions = [
-  {
-    q: 'Ich wasche ___ jeden Morgen.',
-    options: ['mich', 'mir', 'sich', 'dich'],
-    answer: 0
-  },
-  {
-    q: 'Er freut ___ über das Geschenk.',
-    options: ['mich', 'sich', 'ihn', 'dir'],
-    answer: 1
-  },
-  {
-    q: 'Wir beeilen ___.',
-    options: ['euch', 'sich', 'uns', 'wir'],
-    answer: 2
-  },
-  {
-    q: 'Du tust ___ weh. (弄伤自己)',
-    options: ['dich', 'dir', 'sich', 'du'],
-    answer: 1
-  },
-  {
-    q: 'Sie interessiert ___ für Geschichte.',
-    options: ['ihr', 'sich', 'sie', 'euch'],
-    answer: 1
-  },
-  {
-    q: 'Ich kaufe ___ ein neues Buch. (给自己买)',
-    options: ['mich', 'sich', 'mir', 'mein'],
-    answer: 2
-  },
-  {
-    q: '___ er an mich? (他记得我吗？)',
-    options: ['Erinnert sich', 'Sich erinnert', 'Erinnert', 'Erinnert dich'],
-    answer: 0
-  },
-  {
-    q: 'Sie muss ___ beeilen.',
-    options: ['mich', 'euch', 'sich', 'uns'],
-    answer: 2
-  },
-  {
-    q: 'Ich glaube, dass er ___ freut.',
-    options: ['mich', 'sich', 'ihn', 'ihm'],
-    answer: 1
-  },
-  {
-    q: '___ bitte! (请坐！)',
-    options: ['Setz dir', 'Setz dich', 'Setzt euch', 'Sich setzen'],
-    answer: 1
-  },
-  {
-    q: 'Ich ___ auf die Prüfung vor.',
-    options: ['bereite mich', 'bereite mir', 'vorbereite mich', 'bereite sich'],
-    answer: 0
-  },
-  {
-    q: 'Kannst du ___ meine Adresse merken?',
-    options: ['mich', 'dir', 'dich', 'sich'],
-    answer: 1
-  },
+function allowDrop(e){ e.preventDefault(); e.currentTarget.classList.add('hover'); }
+function dragStart(e,idx){
+  e.dataTransfer.setData('text/plain', idx);
+  e.currentTarget.classList.add('dropping');
+}
+function drop(e, targetType){
+  e.preventDefault();
+  e.currentTarget.classList.remove('hover');
+  const idx = parseInt(e.dataTransfer.getData('text/plain'));
+  const item = sortItems[idx];
+  if(!item) return;
+
+  if(item.type === targetType){
+    // Correct!
+    placedItems[targetType].push(item);
+    unplaced = unplaced.filter((_,i) => i !== idx);
+    renderDropZones();
+    renderSortItems();
+    checkSortComplete();
+  } else {
+    // Wrong
+    const fb = document.getElementById('sortFeedback');
+    fb.textContent = `❌ "${item.verb}" 不是${targetType === 'echt' ? '真' : '假'}反身动词！再想想。`;
+    fb.className = 'sort-feedback show wrong';
+    setTimeout(() => { fb.className = 'sort-feedback'; }, 2000);
+  }
+  // Reattach drag listeners
+}
+
+function renderDropZones(){
+  document.getElementById('dropEcht').innerHTML = placedItems.echt.length === 0
+    ? '<div style="opacity:.4;pointer-events:none">拖到这里</div>'
+    : placedItems.echt.map(i => `<span class="placed">${i.verb} <span style="font-size:.72rem;color:var(--text-light)">${i.text}</span></span>`).join('');
+  document.getElementById('dropUnecht').innerHTML = placedItems.unecht.length === 0
+    ? '<div style="opacity:.4;pointer-events:none">拖到这里</div>'
+    : placedItems.unecht.map(i => `<span class="placed">${i.verb} <span style="font-size:.72rem;color:var(--text-light)">${i.text}</span></span>`).join('');
+}
+
+function checkSortComplete(){
+  const fb = document.getElementById('sortFeedback');
+  if(unplaced.length === 0){
+    fb.textContent = '✅ 全部正确！真反身不能离开 sich，假反身可以带其他宾语。';
+    fb.className = 'sort-feedback show perfect';
+  }
+}
+
+renderSortItems();
+renderDropZones();
+
+// ===== Slide 04: Position input =====
+function checkPosInput(input){
+  const answer = input.dataset.answer.trim().toLowerCase();
+  const val = input.value.trim().toLowerCase();
+  const check = input.parentElement.querySelector('.pos-check');
+
+  if(val === ''){ input.className = 'pos-input'; check.textContent = ''; check.className = 'pos-check'; return; }
+
+  if(val === answer){
+    input.className = 'pos-input correct';
+    check.textContent = '✅ Richtig!';
+    check.className = 'pos-check ok';
+  } else {
+    input.className = 'pos-input wrong';
+    check.textContent = `❌ 再试——提示: ${answer.length > 3 ? '第三/四人称反身代词' : '与人称对应'}`;
+    check.className = 'pos-check err';
+  }
+}
+
+// ===== Slide 05: Werkstatt =====
+const wordBankItems = [
+  {text:'mich', hint:'ich Akk'},
+  {text:'dich', hint:'du Akk'},
+  {text:'sich', hint:'er/sie/es Akk/Dat'},
+  {text:'uns', hint:'wir'},
+  {text:'euch', hint:'ihr'},
+  {text:'mir', hint:'ich Dat'},
+  {text:'dir', hint:'du Dat'},
+  {text:'freue mich', hint:'感到高兴'},
+  {text:'beeile mich', hint:'赶紧'},
+  {text:'fühle mich', hint:'感觉'},
+  {text:'treffe mich', hint:'见面'},
+  {text:'setze mich', hint:'坐下'},
+  {text:'wasche mich', hint:'洗漱'},
+  {text:'interessiere mich', hint:'感兴趣'},
+  {text:'konzentriere mich', hint:'专注'},
+  {text:'kann … mich', hint:'情态 + 反身'},
 ];
 
-let currentQuiz = quizQuestions.map(q => ({
-  ...q,
-  selected: null,
-  revealed: false,
-}));
+const wordBank = document.getElementById('wordBank');
+wordBankItems.forEach(w => {
+  const chip = document.createElement('span');
+  chip.className = 'chip';
+  chip.textContent = w.text;
+  chip.title = w.hint;
+  chip.addEventListener('click', () => {
+    const ta = document.getElementById('werkstattInput');
+    const cursor = ta.selectionStart || ta.value.length;
+    const before = ta.value.substring(0, cursor);
+    const after = ta.value.substring(cursor);
+    ta.value = before + w.text + ' ' + after;
+    ta.focus();
+    ta.selectionStart = ta.selectionEnd = cursor + w.text.length + 1;
+    updateCharCount();
+    chip.classList.add('used');
+  });
+  wordBank.appendChild(chip);
+});
 
-function renderQuiz() {
-  const container = document.getElementById('quiz-container');
-  let correctCount = 0;
-  let totalAttempted = 0;
+function updateCharCount(){
+  const len = document.getElementById('werkstattInput').value.length;
+  document.getElementById('charCount').textContent = `${len} 字符 · 试试用 40-80 字符写一段柏林日常`;
+}
 
-  container.innerHTML = currentQuiz.map((q, qi) => {
-    let answered = q.selected !== null;
-    if (answered) totalAttempted++;
-    if (answered && q.selected === q.answer) correctCount++;
+// ===== Slide 06: Card game =====
+const cardData = [
+  {verb:'sich freuen', meaning:'感到高兴', example:'Ich freue mich auf den Urlaub.', icon:'😊'},
+  {verb:'sich beeilen', meaning:'赶紧', example:'Wir müssen uns beeilen.', icon:'🏃'},
+  {verb:'sich interessieren', meaning:'感兴趣', example:'Sie interessiert sich für Kunst.', icon:'🎨'},
+  {verb:'sich konzentrieren', meaning:'集中注意力', example:'Ich konzentriere mich auf die Arbeit.', icon:'🎯'},
+  {verb:'sich ausruhen', meaning:'休息', example:'Nach der Arbeit ruhe ich mich aus.', icon:'😌'},
+  {verb:'sich erinnern', meaning:'记起', example:'Er erinnert sich an unsere Reise.', icon:'🧠'},
+  {verb:'sich auskennen', meaning:'熟悉', example:'Ich kenne mich in Berlin aus.', icon:'🗺️'},
+  {verb:'sich verlieben', meaning:'爱上', example:'Sie hat sich in Berlin verliebt.', icon:'💛'},
+  {verb:'sich anmelden', meaning:'报名', example:'Ich melde mich zum Kurs an.', icon:'📝'},
+  {verb:'sich etwas vorstellen', meaning:'想象', example:'Ich kann mir das gut vorstellen.', icon:'💭'},
+  {verb:'sich wehtun', meaning:'弄伤自己', example:'Pass auf, sonst tust du dir weh!', icon:'🩹'},
+  {verb:'sich etwas kaufen', meaning:'给自己买', example:'Ich kaufe mir ein Berlin-Ticket.', icon:'🛍️'},
+  {verb:'sich etwas merken', meaning:'记住', example:'Ich merke mir deine Nummer.', icon:'📌'},
+  {verb:'sich bedanken', meaning:'感谢', example:'Ich möchte mich ganz herzlich bedanken.', icon:'🙏'},
+  {verb:'sich kümmern', meaning:'关心', example:'Sie kümmert sich um die Gäste.', icon:'🤗'},
+];
 
-    return `
-      <div class="quiz-question card" style="padding:16px;">
-        <p>${qi + 1}. ${q.q}</p>
-        <div class="quiz-options">
-          ${q.options.map((opt, oi) => {
-            let cls = 'quiz-option';
-            if (q.revealed) {
-              if (oi === q.answer) cls += ' correct';
-              else if (oi === q.selected && oi !== q.answer) cls += ' wrong';
-            } else if (q.selected === oi) {
-              cls += ' selected';
-            }
-            return `<div class="${cls}" data-qi="${qi}" data-oi="${oi}">${opt}</div>`;
-          }).join('')}
+const cardGrid = document.getElementById('cardGrid');
+let cardsFlipped = new Set();
+
+function renderCards(){
+  cardGrid.innerHTML = '';
+  cardsFlipped = new Set();
+  cardData.forEach((c,i) => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.dataset.idx = i;
+    card.innerHTML = `
+      <div class="game-inner">
+        <div class="game-front"><div class="icon">${c.icon}</div>${c.verb}</div>
+        <div class="game-back">
+          <div class="verb">${c.verb}</div>
+          <div class="meaning">${c.meaning}</div>
+          <div class="example">${c.example}</div>
         </div>
       </div>
     `;
-  }).join('');
-
-  document.getElementById('quiz-score').textContent = `${correctCount} / ${totalAttempted}`;
-  document.getElementById('quiz-score').style.color = totalAttempted > 0 && correctCount === totalAttempted ? 'var(--success)' : 'var(--primary)';
-
-  // Attach events
-  container.querySelectorAll('.quiz-option').forEach(el => {
-    el.addEventListener('click', () => {
-      const qi = parseInt(el.dataset.qi);
-      const oi = parseInt(el.dataset.oi);
-      if (currentQuiz[qi].revealed) return;
-      currentQuiz[qi].selected = oi;
-      currentQuiz[qi].revealed = true;
-      renderQuiz();
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+      if(card.classList.contains('flipped')){
+        cardsFlipped.add(i);
+      } else {
+        cardsFlipped.delete(i);
+      }
+      updateGameProgress();
     });
+    cardGrid.appendChild(card);
   });
+  updateGameProgress();
 }
 
-function resetQuiz() {
-  currentQuiz = quizQuestions.map(q => ({ ...q, selected: null, revealed: false }));
-  renderQuiz();
+function updateGameProgress(){
+  const total = cardData.length;
+  const open = cardsFlipped.size;
+  document.getElementById('gameProgress').textContent = `${open} / ${total} 打开 · ${
+    open === total ? '✅ 全部！你已经掌握了' : open > total * 0.7 ? '快好了 💪' : '试试再翻开几张'
+  }`;
 }
 
-renderQuiz();
+function flipAllCards(){
+  document.querySelectorAll('.game-card').forEach((c,i) => {
+    c.classList.add('flipped');
+    cardsFlipped.add(i);
+  });
+  updateGameProgress();
+}
 
-// Open first toggle by default
-document.querySelectorAll('.toggle-section.open').forEach(s => {
-  s.querySelector('.toggle-body').style.display = 'block';
-});
+function resetAllCards(){
+  document.querySelectorAll('.game-card').forEach((c,i) => {
+    c.classList.remove('flipped');
+    cardsFlipped.delete(i);
+  });
+  updateGameProgress();
+}
+
+renderCards();
+
+// ===== Init =====
+// Create dots
+const dotContainer = document.getElementById('progress-dots');
+for(let i = 0; i < slideCount; i++){
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+  dot.addEventListener('click', () => goToSlide(i));
+  dotContainer.appendChild(dot);
+}
+
+showSlide(0);
 </script>
 </body>
 </html>
