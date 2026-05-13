@@ -5,456 +5,494 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0d1321">
-<title>Berlin, reflexiv — Reflexive Verben B1</title>
+<meta name="theme-color" content="#0d0d0d">
+<title>Reflexive Verben — Die Zeit der Selbst</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0d1321; --navy-dark:#080c17; --navy-light:#1a2744;
-  --berlin-gold:#f4a261; --berlin-gold-light:#fef0d9;
-  --berlin-gold-dim:#c68a4e; --berlin-rot:#c1121f;
-  --berlin-rot-light:#ef476f; --creme:#f7f3eb;
-  --creme-warm:#faf6ef; --weiss:#fdfdfc;
-  --text:#1e1e24; --text-light:#6b6b76;
-  --linie:#d4c9b8; --linie-fein:#e8e0d4;
-  --ubahn:#f3d03e; --ubahn-bg:rgba(243,208,62,0.12);
-  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
-  --shadow:0 4px 16px rgba(0,0,0,.08);
-  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
-  --radius:6px; --radius-lg:12px;
-  --ease:cubic-bezier(.4,0,.2,1);
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --schwarz:#0d0d0d; --rot:#c1121f; --gold:#f4a261; --gold-light:#fef0d9;
+  --papier:#f7f3eb; --papier-warm:#faf6ef; --weiss:#fdfdfc;
+  --grau:#4a4a4a; --grau-light:#8c8c8c; --linie:#d4c9b8; --linie-fein:#e8e0d4;
+  --shadow:0 4px 16px rgba(0,0,0,.08); --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --radius:6px; --radius-lg:12px; --ease:cubic-bezier(.4,0,.2,1);
 }
-html{scroll-behavior:smooth;font-size:16px;background:var(--navy)}
+html{scroll-behavior:smooth;font-size:16px;background:var(--papier)}
 body{
   font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-  color:var(--text);line-height:1.6;overflow:hidden;height:100vh;
+  color:var(--schwarz);line-height:1.6;overflow:hidden;height:100vh;
   -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
   touch-action:manipulation;text-size-adjust:100%;
-  background:var(--navy);user-select:none;
+  background:var(--papier);user-select:none;
 }
-h1,h2,h3{font-family:'Georgia','Times New Roman',serif;line-height:1.25;letter-spacing:-0.01em}
-.de{font-style:normal;font-weight:500}.zh{font-size:.82em;color:var(--text-light);font-weight:400}
+h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-height:1.25;letter-spacing:-0.01em}
+.de{font-style:normal;font-weight:500}
+.zh{font-size:.82em;color:var(--grau-light);font-weight:400}
+.accent-red{color:var(--rot)}.accent-gold{color:var(--gold)}
 
-/* ===== Progress ===== */
-#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--berlin-gold),var(--berlin-rot),var(--ubahn));z-index:1000;transition:width .5s var(--ease)}
+/* Progress bar */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--schwarz),var(--rot),var(--gold));z-index:1000;transition:width .5s var(--ease)}
 #progress-dots{position:fixed;top:14px;right:20px;display:flex;gap:6px;z-index:999}
-#progress-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s var(--ease)}
-#progress-dots .dot.active{background:var(--berlin-gold);transform:scale(1.4);box-shadow:0 0 8px rgba(244,162,97,.5)}
-#progress-dots .dot.done{background:var(--ubahn)}
+#progress-dots .dot{width:8px;height:8px;border-radius:50%;background:var(--linie);cursor:pointer;transition:all .3s var(--ease)}
+#progress-dots .dot.active{background:var(--rot);transform:scale(1.4);box-shadow:0 0 8px rgba(193,18,31,.4)}
+#progress-dots .dot.done{background:var(--gold)}
 
-/* ===== Slide ===== */
+/* Slide */
 .slide{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   padding:60px 20px;position:relative;overflow:hidden;
-  background:var(--navy);
+  background:var(--papier);
 }
-.slide::before{
-  content:'';position:absolute;top:-30%;right:-10%;width:60%;height:80%;
-  background:radial-gradient(ellipse at center,rgba(244,162,97,.06) 0%,transparent 70%);
-  pointer-events:none;
-}
+/* Bauhaus decorations */
+.slide::before{content:'';position:absolute;border-radius:50%;pointer-events:none;z-index:0;opacity:.06}
+#slide-cover::before{width:300px;height:300px;background:var(--rot);top:-80px;right:-60px}
+#slide-cover::after{content:'';position:absolute;pointer-events:none;z-index:0;opacity:.04;
+  width:200px;height:200px;border:3px solid var(--schwarz);bottom:-40px;left:-40px;border-radius:0}
+.slide::after{content:'';position:absolute;width:120px;height:2px;background:var(--gold);opacity:.12;bottom:40px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:0}
+
 .slide-inner{
-  max-width:900px;width:100%;background:var(--creme);
-  border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  max-width:900px;width:100%;background:var(--weiss);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow);
   padding:48px 44px;position:relative;z-index:1;
-  border:1px solid rgba(212,201,184,.3);
+  border:1px solid var(--linie-fein);
   max-height:85vh;overflow-y:auto;
 }
+/* Fixed slide-tag positioning - no longer absolute cut off */
 .slide-tag{
-  position:absolute;top:-14px;left:28px;font-family:'Inter',sans-serif;
-  font-size:.7rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
-  padding:5px 16px;border-radius:20px;background:var(--navy);color:var(--berlin-gold);
+  display:inline-block;margin-bottom:18px;
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;
+  background:var(--schwarz);color:var(--gold);
 }
-.nav-row{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:28px;padding-top:16px;border-top:1px solid var(--linie-fein);
-}
-.nav-btn{
-  padding:8px 20px;border:none;border-radius:20px;cursor:pointer;
-  font-size:.82rem;font-weight:500;transition:all .2s var(--ease);
-  background:var(--navy);color:var(--berlin-gold);
-}
-.nav-btn:hover{background:var(--navy-light);transform:translateY(-1px)}
+
+/* Nav */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:16px;border-top:1px solid var(--linie-fein)}
+.nav-btn{padding:8px 20px;border:none;border-radius:20px;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .2s var(--ease);background:var(--schwarz);color:var(--gold)}
+.nav-btn:hover{background:#1a1a1a;transform:translateY(-1px)}
 .nav-btn:disabled{opacity:.3;cursor:default;transform:none}
-.nav-counter{font-size:.78rem;color:var(--text-light);letter-spacing:1px}
+.nav-counter{font-size:.78rem;color:var(--grau-light);letter-spacing:1px}
 
-/* ===== Slide 01: Einstieg ===== */
-.hero-sub{font-size:.82rem;color:var(--text-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.hero-title{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:6px;color:var(--navy)}
-.hero-desc{font-size:.92rem;color:var(--text-light);margin-bottom:24px}
-.scene-box{background:var(--weiss);border-radius:var(--radius);padding:20px;border:1px solid var(--linie-fein);margin-bottom:16px}
-.scene-box .speaker{font-size:.78rem;font-weight:600;color:var(--berlin-rot);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.scene-box .de{font-size:1rem;margin-bottom:2px}
-.scene-box .zh{font-size:.82rem}
-.scene-highlight{padding:2px 6px;border-radius:3px;cursor:pointer;transition:all .2s}
-.scene-highlight.mich{background:rgba(244,162,97,.2);color:#b87333}
-.scene-highlight.mir{background:rgba(193,18,31,.12);color:var(--berlin-rot)}
-.scene-highlight.sich{background:rgba(243,208,62,.25);color:#8b7500}
-.scene-highlight:hover{transform:scale(1.05)}
-.scene-note{font-size:.82rem;padding:10px 14px;background:var(--berlin-gold-light);border-radius:var(--radius);border-left:3px solid var(--berlin-gold);margin-top:8px}
+/* ===== Cover ===== */
+.cover{text-align:center;padding:20px 0}
+.cover .label{font-size:.72rem;color:var(--grau-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:6px;line-height:1.15}
+.cover .subtitle{font-size:1rem;color:var(--grau);margin-bottom:6px}
+.cover .divider{width:60px;height:2px;background:var(--gold);margin:16px auto}
+.cover .desc{font-size:.85rem;color:var(--grau-light);max-width:520px;margin:0 auto 20px;line-height:1.5}
+.cover .tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 8px}
+.cover .tag{font-size:.68rem;padding:4px 14px;border-radius:20px;background:var(--papier);color:var(--grau);border:1px solid var(--linie-fein);letter-spacing:1px}
+.cover .start-btn{display:inline-block;margin-top:20px;padding:12px 36px;background:var(--schwarz);color:var(--gold);border:none;border-radius:24px;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:1px}
+.cover .start-btn:hover{background:#1a1a1a;transform:translateY(-2px)}
 
-/* ===== Slide 02: Entdeckung ===== */
-.pronoun-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:16px 0}
-.pronoun-card{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px 18px;cursor:pointer;transition:all .2s var(--ease);position:relative}
-.pronoun-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--berlin-gold)}
-.pronoun-card .person{font-weight:600;font-size:.92rem;color:var(--text)}
-.pronoun-card .akk{font-size:.82rem;color:var(--berlin-rot);margin-top:4px}
-.pronoun-card .dat{font-size:.82rem;color:var(--berlin-gold-dim);margin-top:2px}
-.pronoun-card .hint{position:absolute;top:4px;right:8px;font-size:.65rem;color:var(--text-light)}
-.pronoun-card.revealed{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
-.pronoun-card .blank{display:inline-block;min-width:40px;border-bottom:2px dashed var(--berlin-gold);color:var(--berlin-rot);font-weight:600;padding:0 4px}
+/* ===== End page ===== */
+.end-page{text-align:center;padding:30px 0}
+.end-page .end-icon{font-size:3rem;margin-bottom:12px}
+.end-page h2{font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:8px}
+.end-page .motto{font-style:italic;font-size:.95rem;color:var(--grau);padding:16px 0 8px}
+.end-page .motto-author{font-size:.78rem;color:var(--grau-light)}
+.end-page .summary{font-size:.85rem;color:var(--grau-light);max-width:480px;margin:16px auto;line-height:1.6}
+.end-page .footer-link{font-size:.82rem;color:var(--grau-light);margin-top:20px}
+
+/* ===== Scene boxes ===== */
+.scene-box{background:var(--papier-warm);border-radius:var(--radius);padding:18px;border:1px solid var(--linie-fein);margin-bottom:12px}
+.scene-box .speaker{font-size:.75rem;font-weight:600;color:var(--rot);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.scene-box .de{font-size:.95rem;margin-bottom:2px;line-height:1.7}
+.scene-box .zh{font-size:.8rem}
+.highlight-word{padding:2px 5px;border-radius:3px;cursor:pointer;transition:all .2s;font-weight:600}
+.highlight-word.typ-mich{background:rgba(244,162,97,.2);color:#b87333}
+.highlight-word.typ-mir{background:rgba(193,18,31,.1);color:var(--rot)}
+.highlight-word.typ-sich{background:rgba(212,201,184,.3);color:var(--grau)}
+.highlight-word:hover{transform:scale(1.08)}
+.scene-note{padding:10px 14px;background:var(--gold-light);border-radius:var(--radius);border-left:3px solid var(--gold);font-size:.82rem;margin-top:10px}
+
+/* ===== Pronoun discovery ===== */
+.pronoun-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:14px 0}
+@media(max-width:500px){.pronoun-grid{grid-template-columns:1fr}}
+.pronoun-card{background:var(--papier-warm);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px 18px;cursor:pointer;transition:all .2s var(--ease)}
+.pronoun-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--gold)}
+.pronoun-card .person{font-weight:600;font-size:.9rem}
+.pronoun-card .akk{font-size:.8rem;color:var(--rot);margin-top:4px}
+.pronoun-card .dat{font-size:.8rem;color:var(--grau);margin-top:2px}
+.pronoun-card .hint{font-size:.65rem;color:var(--grau-light);margin-top:4px}
+.pronoun-card.revealed{border-color:var(--gold);background:var(--gold-light)}
+.pronoun-card .blank{display:inline-block;min-width:38px;border-bottom:2px dashed var(--gold);color:var(--rot);font-weight:600;padding:0 4px}
+
 .pronoun-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
 .pronoun-table th,.pronoun-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--linie-fein)}
-.pronoun-table th{background:var(--navy);color:var(--berlin-gold);font-weight:600;font-size:.78rem;letter-spacing:1px}
-.pronoun-table tr:last-child td{border-bottom:none}
-.pronoun-table .highlight{color:var(--berlin-rot);font-weight:600}
-.pronoun-table .same{background:var(--ubahn-bg);border-radius:3px;padding:2px 6px}
+.pronoun-table th{background:var(--schwarz);color:var(--gold);font-weight:600;font-size:.75rem;letter-spacing:1px}
+.pronoun-table .hl-red{color:var(--rot);font-weight:600}
+.pronoun-table .note-same{background:rgba(212,201,184,.15);border-radius:3px;padding:2px 6px;font-size:.78rem}
 
-/* ===== Slide 03: Zwei Typen ===== */
-.type-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin:16px 0}
-.type-col{background:var(--weiss);border-radius:var(--radius);padding:16px;border:1px solid var(--linie-fein)}
-.type-col h4{margin-bottom:10px;font-size:.9rem}
-.type-col.echt{border-left:3px solid var(--berlin-rot)}
-.type-col.unecht{border-left:3px solid var(--berlin-gold)}
-.sort-item{background:var(--creme);padding:10px 14px;border-radius:var(--radius);margin-bottom:6px;cursor:pointer;transition:all .2s;border:1px solid var(--linie-fein);font-size:.85rem}
-.sort-item:hover{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
-.sort-item .example{font-size:.78rem;color:var(--text-light);margin-top:3px}
-.sort-item .col-tag{font-size:.65rem;padding:2px 8px;border-radius:10px;margin-left:6px;font-weight:500}
-.sort-item .col-tag.echt{background:rgba(193,18,31,.1);color:var(--berlin-rot)}
-.sort-item .col-tag.unecht{background:rgba(244,162,97,.15);color:var(--berlin-gold-dim)}
-.sort-item.dropping{opacity:.5;border-style:dashed}
-.sort-drop{min-height:40px;border:2px dashed var(--linie);border-radius:var(--radius);padding:8px;margin-top:6px;transition:all .2s;text-align:center;font-size:.78rem;color:var(--text-light)}
-.sort-drop.hover{border-color:var(--berlin-gold);background:var(--berlin-gold-light)}
-.sort-drop .placed{display:inline-block;background:var(--berlin-gold-light);padding:4px 10px;border-radius:var(--radius);margin:3px;font-size:.82rem;border:1px solid var(--berlin-gold)}
-.sort-feedback{margin-top:12px;padding:10px;border-radius:var(--radius);font-size:.85rem;text-align:center;display:none}
+/* ===== Sort ===== */
+.type-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:14px 0}
+@media(max-width:500px){.type-grid{grid-template-columns:1fr}}
+.type-col{background:var(--papier-warm);border-radius:var(--radius);padding:16px;border:1px solid var(--linie-fein)}
+.type-col h4{font-size:.85rem;margin-bottom:6px}
+.type-col.echt{border-top:3px solid var(--rot)}
+.type-col.unecht{border-top:3px solid var(--gold)}
+.sort-drop{min-height:44px;border:2px dashed var(--linie);border-radius:var(--radius);padding:8px;margin-top:6px;text-align:center;font-size:.76rem;color:var(--grau-light);transition:all .2s}
+.sort-drop.hover{border-color:var(--gold);background:var(--gold-light)}
+.sort-drop .placed{display:inline-block;background:var(--gold-light);padding:4px 10px;border-radius:var(--radius);margin:3px;font-size:.8rem;border:1px solid var(--gold)}
+#sortItems{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.sort-item{background:var(--papier);padding:10px 14px;border-radius:var(--radius);cursor:grab;border:1px solid var(--linie-fein);font-size:.84rem;transition:all .2s}
+.sort-item:hover{border-color:var(--gold);background:var(--gold-light)}
+.sort-feedback{margin-top:10px;padding:10px;border-radius:var(--radius);font-size:.84rem;text-align:center;display:none}
 .sort-feedback.show{display:block}
-.sort-feedback.perfect{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
-.sort-feedback.wrong{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
-.sort-feedback.partial{background:#fff3cd;color:#856404;border:1px solid #ffeeba}
 
-/* ===== Slide 04: Position ===== */
-.pos-box{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:16px;margin-bottom:12px}
-.pos-box h4{font-size:.88rem;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.pos-tag{font-size:.65rem;padding:2px 10px;border-radius:10px;font-weight:600}
-.pos-tag.simple{background:rgba(244,162,97,.2);color:var(--berlin-gold-dim)}
-.pos-tag.modal{background:rgba(193,18,31,.1);color:var(--berlin-rot)}
-.pos-tag.neben{background:rgba(243,208,62,.25);color:#8b7500}
-.pos-example{padding:12px;background:var(--creme);border-radius:var(--radius);margin:8px 0;font-size:.88rem}
-.pos-example .sich-highlight{color:var(--berlin-rot);font-weight:600;padding:0 2px}
-.pos-exercise{margin-top:8px}
-.pos-exercise input{width:100%;padding:10px 14px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.85rem;outline:none;transition:border-color .2s;font-family:inherit}
-.pos-exercise input:focus{border-color:var(--berlin-gold)}
-.pos-exercise input.correct{border-color:#22c55e;background:#f0fdf4}
-.pos-exercise input.wrong{border-color:#ef4444;background:#fef2f2}
-.pos-check{font-size:.78rem;margin-top:4px;min-height:20px}
+/* ===== Position ===== */
+.pos-box{background:var(--papier-warm);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:16px;margin-bottom:10px}
+.pos-box h4{font-size:.85rem;margin-bottom:8px}
+.pos-box .rule-desc{font-size:.8rem;color:var(--grau);margin-bottom:6px}
+.pos-example{padding:10px 14px;background:var(--weiss);border-radius:var(--radius);font-size:.86rem;margin:8px 0;border:1px solid var(--linie-fein)}
+.pos-example .sich-hl{color:var(--rot);font-weight:600}
+.input-grid{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin:10px 0}
+@media(max-width:500px){.input-grid{grid-template-columns:1fr}}
+.input-item label{font-size:.76rem;color:var(--grau);display:block;margin-bottom:4px}
+.pos-input{width:100%;padding:9px 12px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.84rem;outline:none;transition:border-color .2s;font-family:inherit;background:var(--weiss)}
+.pos-input:focus{border-color:var(--gold)}
+.pos-input.ok{border-color:#22c55e;background:#f0fdf4}
+.pos-input.err{border-color:#ef4444;background:#fef2f2}
+.pos-check{font-size:.74rem;margin-top:3px;min-height:18px}
 .pos-check.ok{color:#22c55e}.pos-check.err{color:#ef4444}
-.translate-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:12px 0}
-@media(max-width:600px){.translate-grid{grid-template-columns:1fr}}
 
-/* ===== Slide 05: Werkstatt ===== */
-.werkstatt-textarea{width:100%;min-height:120px;padding:14px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.88rem;font-family:inherit;outline:none;resize:vertical;transition:border-color .2s;background:var(--weiss)}
-.werkstatt-textarea:focus{border-color:var(--berlin-gold)}
-.word-bank{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0}
-.word-bank .chip{background:var(--creme);border:1px solid var(--linie);border-radius:16px;padding:4px 12px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--text)}
-.word-bank .chip:hover{background:var(--berlin-gold-light);border-color:var(--berlin-gold)}
-.word-bank .chip.used{opacity:.4;text-decoration:line-through}
-.beispiel-box{background:var(--weiss);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:.85rem}
-.beispiel-box .de{color:var(--navy)}.beispiel-box .zh{color:var(--text-light)}
-.char-count{text-align:right;font-size:.72rem;color:var(--text-light);margin-top:4px}
+/* ===== Werkstatt ===== */
+.werkstatt-ta{width:100%;min-height:110px;padding:12px;border:2px solid var(--linie);border-radius:var(--radius);font-size:.86rem;font-family:inherit;outline:none;resize:vertical;transition:border-color .2s;background:var(--weiss)}
+.werkstatt-ta:focus{border-color:var(--gold)}
+.word-bank{display:flex;flex-wrap:wrap;gap:5px;padding:8px 0}
+.word-bank .chip{background:var(--papier);border:1px solid var(--linie);border-radius:14px;padding:4px 11px;font-size:.76rem;cursor:pointer;transition:all .2s;color:var(--schwarz)}
+.word-bank .chip:hover{background:var(--gold-light);border-color:var(--gold)}
+.word-bank .chip.used{opacity:.35;text-decoration:line-through}
+.beispiel-box{background:var(--papier-warm);border:1px solid var(--linie-fein);border-radius:var(--radius);padding:14px;margin-bottom:10px;font-size:.84rem;line-height:1.6}
+.beispiel-box .de b{color:var(--rot)}
+.char-count{text-align:right;font-size:.7rem;color:var(--grau-light);margin-top:4px}
 
-/* ===== Slide 06: Karten-Spiel ===== */
-.card-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin:16px 0}
-@media(max-width:500px){.card-grid{grid-template-columns:repeat(2,1fr)}}
-.game-card{perspective:600px;height:140px;cursor:pointer}
+/* ===== Cards ===== */
+.card-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin:14px 0}
+@media(max-width:400px){.card-grid{grid-template-columns:repeat(2,1fr)}}
+.game-card{perspective:600px;height:130px;cursor:pointer}
 .game-inner{position:relative;width:100%;height:100%;transition:transform .5s var(--ease);transform-style:preserve-3d}
 .game-card.flipped .game-inner{transform:rotateY(180deg)}
 .game-front,.game-back{
   position:absolute;width:100%;height:100%;backface-visibility:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border-radius:var(--radius);padding:12px;text-align:center;
+  border-radius:var(--radius);padding:10px;text-align:center;
   border:1px solid var(--linie-fein);
 }
-.game-front{background:var(--navy);color:var(--berlin-gold);font-weight:600;font-size:.9rem}
-.game-front .icon{font-size:1.8rem;margin-bottom:4px}
-.game-back{
-  background:var(--weiss);color:var(--text);transform:rotateY(180deg);
-  font-size:.78rem;line-height:1.4;
-}
-.game-back .verb{font-weight:600;color:var(--berlin-rot);font-size:.85rem}
-.game-back .example{font-size:.72rem;color:var(--text-light);margin-top:4px}
-.game-back .meaning{font-size:.72rem;color:var(--text-light);margin-top:2px}
-.game-progress{text-align:center;font-size:.78rem;color:var(--text-light);margin-bottom:10px}
-.game-btn-row{display:flex;gap:8px;justify-content:center;margin-top:12px}
-.game-btn{padding:6px 16px;border:none;border-radius:16px;cursor:pointer;font-size:.78rem;transition:all .2s;background:var(--creme);border:1px solid var(--linie);color:var(--text)}
-.game-btn:hover{background:var(--berlin-gold-light);border-color:var(--berlin-gold)}
-.game-btn.primary{background:var(--navy);color:var(--berlin-gold)}
+.game-front{background:var(--schwarz);color:var(--gold);font-weight:600;font-size:.85rem}
+.game-front .icon{font-size:1.6rem;margin-bottom:3px}
+.game-back{background:var(--weiss);color:var(--schwarz);transform:rotateY(180deg);font-size:.76rem;line-height:1.4}
+.game-back .verb{font-weight:600;color:var(--rot);font-size:.82rem}
+.game-back .example{font-size:.7rem;color:var(--grau);margin-top:3px}
+.game-back .meaning{font-size:.7rem;color:var(--grau-light);margin-top:2px}
+.game-progress{text-align:center;font-size:.76rem;color:var(--grau);margin-bottom:8px}
+.game-btn-row{display:flex;gap:8px;justify-content:center}
+.game-btn{padding:5px 14px;border:none;border-radius:14px;cursor:pointer;font-size:.76rem;transition:all .2s;background:var(--papier);border:1px solid var(--linie);color:var(--schwarz)}
+.game-btn:hover{background:var(--gold-light);border-color:var(--gold)}
+.game-btn.primary{background:var(--schwarz);color:var(--gold)}
 
-/* ===== Scrollbar ===== */
+/* ===== Zitat ===== */
+.zitat{font-style:italic;text-align:center;padding:14px 0 6px;font-size:.84rem;color:var(--grau)}
+.zitat .author{font-size:.72rem;color:var(--grau-light);margin-top:3px;font-style:normal}
+
+/* Scrollbar */
 .slide-inner::-webkit-scrollbar{width:4px}
 .slide-inner::-webkit-scrollbar-track{background:transparent}
 .slide-inner::-webkit-scrollbar-thumb{background:var(--linie);border-radius:2px}
 
-/* ===== Keyboard hint ===== */
-.kb-hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:1px;pointer-events:none;z-index:500;transition:opacity .5s}
+/* Keyboard hint */
+.kb-hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:.68rem;color:var(--grau-light);letter-spacing:1px;pointer-events:none;z-index:500;transition:opacity .5s}
 .kb-hint.hidden{opacity:0}
-.kb-hint kbd{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;font-family:inherit}
+.kb-hint kbd{background:var(--linie);padding:2px 7px;border-radius:3px;font-family:inherit;color:var(--grau)}
 
-/* ===== Animation ===== */
+/* Fade in */
 .fade-in{animation:fadeIn .5s var(--ease) forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.fade-in-delay-1{animation-delay:.1s}.fade-in-delay-2{animation-delay:.2s}.fade-in-delay-3{animation-delay:.3s}.fade-in-delay-4{animation-delay:.4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ===== Zitat ===== */
-.zitat{font-style:italic;text-align:center;padding:16px 0 8px;font-size:.85rem;color:var(--text-light)}
-.zitat .author{font-size:.75rem;color:var(--text-light);margin-top:4px;font-style:normal}
+/* Touch zones */
+.touch-zone{position:fixed;top:0;bottom:0;width:25%;z-index:100}
+.touch-zone.left{left:0}.touch-zone.right{right:0}
 
-/* ===== Mobile ===== */
-@media(max-width:640px){
+@media(max-width:600px){
   .slide{padding:40px 12px}
-  .slide-inner{padding:32px 20px;max-height:82vh}
+  .slide-inner{padding:28px 18px;max-height:82vh}
   .pronoun-grid{grid-template-columns:1fr}
   .type-grid{grid-template-columns:1fr}
   .card-grid{grid-template-columns:repeat(2,1fr)}
-  .game-card{height:120px}
-  .slide-tag{left:16px;font-size:.62rem}
+  .game-card{height:110px}
   #progress-dots{top:10px;right:12px}
   .kb-hint{display:none}
 }
-
-/* ===== Touch swipe hint ===== */
-.touch-zone{position:fixed;top:0;bottom:0;width:30%;z-index:100}
-.touch-zone.left{left:0}.touch-zone.right{right:0}
-
-/* ===== Focus ===== */
-.slide-inner:focus{outline:none}
 </style>
 </head>
 <body>
 
-<!-- Progress -->
 <div id="progress-bar"></div>
 <div id="progress-dots"></div>
-
-<!-- Touch Zones -->
 <div class="touch-zone left" onclick="prevSlide()"></div>
 <div class="touch-zone right" onclick="nextSlide()"></div>
+<div class="kb-hint" id="kbHint"><kbd>←</kbd> <kbd>→</kbd> 翻页 · 点击翻转</div>
 
-<!-- Keyboard Hint -->
-<div class="kb-hint" id="kbHint"><kbd>←</kbd> <kbd>→</kbd> 翻页 · 点击翻转卡片</div>
+<!-- ===== COVER ===== -->
+<div class="slide" id="slide-cover" data-slide="0">
+  <div class="slide-inner" style="background:var(--papier-warm)">
+    <div class="cover">
+      <div class="label">Grammatik · B1</div>
+      <h1>柏林 <span class="accent-red">反思</span></h1>
+      <div class="subtitle" style="font-size:.85rem;color:var(--grau)">Reflexive Verben im Berliner Alltag</div>
+      <div class="divider"></div>
+      <div class="desc">
+        反身动词——动作回到主语自己。<br>
+        在柏林的咖啡馆、地铁、博物馆里，学会它们。
+      </div>
+      <div class="tags">
+        <span class="tag">Einstieg</span>
+        <span class="tag">Pronomen</span>
+        <span class="tag">Typen</span>
+        <span class="tag">Position</span>
+        <span class="tag">Werkstatt</span>
+        <span class="tag">Karten</span>
+      </div>
+      <button class="start-btn" onclick="nextSlide()">Los geht's! →</button>
+    </div>
+    <div class="nav-row" style="border:none;margin-top:8px;padding-top:0">
+      <div></div>
+      <span class="nav-counter" style="font-size:.68rem;">8 Seiten · ← → 翻页</span>
+    </div>
+  </div>
+</div>
 
 <!-- ===== SLIDE 01 · Einstieg ===== -->
-<div class="slide" data-slide="0">
-  <div class="slide-inner" tabindex="-1">
+<div class="slide" data-slide="1">
+  <div class="slide-inner">
     <div class="slide-tag">01 · Einstieg</div>
 
-    <div class="hero-sub">Reflexive Verben · B1</div>
-    <h1 class="hero-title">Berlin, <span style="color:var(--berlin-rot)">reflexiv</span></h1>
-    <p class="hero-desc">在柏林的一天，反身动词无处不在。你能发现规律吗？</p>
+    <h2 style="font-size:1.3rem;margin-bottom:4px">Berlin, <span class="accent-red">reflexiv</span></h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:14px">在柏林的一天，反身动词无处不在。你能发现规律吗？</p>
 
     <div class="scene-box">
       <div class="speaker">☕ Morgens im Café · 早上在咖啡馆</div>
-      <div class="de">„Ich freue <span class="scene-highlight mich" onclick="highlight('mich')">mich</span> auf den Kaffee! <br> Und ich bestelle <span class="scene-highlight mir" onclick="highlight('mir')">mir</span> ein Croissant dazu."</div>
-      <div class="zh">我很期待这杯咖啡！再给自己加一个可颂。</div>
+      <div class="de">„Ich freue <span class="highlight-word typ-mich" onclick="setNote('mich')">mich</span> auf den Kaffee!<br>Und ich bestelle <span class="highlight-word typ-mir" onclick="setNote('mir')">mir</span> ein Croissant dazu."</div>
+      <div class="zh">我很期待咖啡！再给自己加一个可颂。</div>
     </div>
 
     <div class="scene-box">
       <div class="speaker">🚇 In der U-Bahn · 在地铁里</div>
-      <div class="de">„Er setzt <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> neben mich <br> und konzentriert <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> auf sein Buch."</div>
+      <div class="de">„Er setzt <span class="highlight-word typ-sich" onclick="setNote('sich')">sich</span> neben mich<br>und konzentriert <span class="highlight-word typ-sich" onclick="setNote('sich')">sich</span> auf sein Buch."</div>
       <div class="zh">他坐到我旁边，专心看他的书。</div>
     </div>
 
-    <div class="scene-box">
+    <div class="scene-box" style="margin-bottom:0">
       <div class="speaker">🖼️ Nachmittags im Museum · 下午在博物馆</div>
-      <div class="de">„Ich interessiere <span class="scene-highlight mich" onclick="highlight('mich')">mich</span> für die Ausstellung. <br> Meine Freundin ärgert <span class="scene-highlight sich" onclick="highlight('sich')">sich</span> über den Eintrittspreis."</div>
-      <div class="zh">我对展览很感兴趣。我朋友对门票价格很不满。</div>
+      <div class="de">„Ich interessiere <span class="highlight-word typ-mich" onclick="setNote('mich')">mich</span> für die Ausstellung.<br>Meine Freundin ärgert <span class="highlight-word typ-sich" onclick="setNote('sich')">sich</span> über den Eintritt."</div>
+      <div class="zh">我对展览很感兴趣。朋友对门票价格很不满。</div>
     </div>
 
-    <div class="scene-note" id="scene-note">
-      💡 <strong>Beachte:</strong> <span class="scene-highlight mich">mich</span> / <span class="scene-highlight mir">mir</span> / <span class="scene-highlight sich">sich</span> — 哪个对应哪个人称？翻到下一页找答案。
-    </div>
+    <div class="scene-note" id="sceneNote">💡 点击彩色词汇查看解释</div>
 
     <div class="nav-row">
       <div></div>
-      <span class="nav-counter">1 / 6</span>
+      <span class="nav-counter">2 / 8</span>
       <button class="nav-btn" onclick="nextSlide()">Entdeckung →</button>
     </div>
   </div>
 </div>
 
 <!-- ===== SLIDE 02 · Entdeckung ===== -->
-<div class="slide" data-slide="1">
-  <div class="slide-inner" tabindex="-1">
+<div class="slide" data-slide="2">
+  <div class="slide-inner">
     <div class="slide-tag">02 · Entdeckung</div>
 
-    <h2 style="font-size:1.4rem;margin-bottom:4px">反身代词 · 规律发现</h2>
-    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">点击卡片，<strong>自己填空</strong>——看看你能不能找出规律</p>
+    <h2 style="font-size:1.3rem;margin-bottom:4px">反身代词 · 规律发现</h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:10px">点击卡片填空——发现人称与反身代词的对应规律</p>
 
     <div class="pronoun-grid" id="pronounGrid"></div>
 
     <div id="pronounTable" style="display:none" class="fade-in">
-      <div style="margin-top:16px">
-        <h3 style="font-size:.95rem;margin-bottom:8px;color:var(--navy)">📊 完整对照表</h3>
-        <table class="pronoun-table">
-          <thead><tr><th>人称</th><th>Akkusativ (4格)</th><th>Dativ (3格)</th></tr></thead>
-          <tbody>
-            <tr><td>ich</td><td>mich</td><td>mir</td></tr>
-            <tr><td>du</td><td>dich</td><td>dir</td></tr>
-            <tr><td>er / sie / es</td><td class="highlight">sich <span class="same">← 相同</span></td><td class="highlight">sich <span class="same">← 相同</span></td></tr>
-            <tr><td>wir</td><td>uns</td><td>uns</td></tr>
-            <tr><td>ihr</td><td>euch</td><td>euch</td></tr>
-            <tr><td>sie / Sie</td><td class="highlight">sich <span class="same">← 相同</span></td><td class="highlight">sich <span class="same">← 相同</span></td></tr>
-          </tbody>
-        </table>
-        <div class="zitat">„Ein Mensch, der sich kennt, kennt die Welt." <div class="author">— Berliner Weisheit</div></div>
+      <h3 style="font-size:.9rem;margin-bottom:8px">📊 完整对照表</h3>
+      <table class="pronoun-table">
+        <thead><tr><th>人称</th><th>Akkusativ (4. Fall)</th><th>Dativ (3. Fall)</th></tr></thead>
+        <tbody>
+          <tr><td>ich</td><td>mich</td><td>mir</td></tr>
+          <tr><td>du</td><td>dich</td><td>dir</td></tr>
+          <tr><td>er / sie / es</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
+          <tr><td>wir</td><td>uns</td><td>uns</td></tr>
+          <tr><td>ihr</td><td>euch</td><td>euch</td></tr>
+          <tr><td>sie / Sie</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
+        </tbody>
+      </table>
+      <div class="note-same" style="padding:8px 12px;font-size:.78rem">
+        🔑 第三人称（er/sie/es/sie/Sie）反身代词<b>不分格</b>，均为 <strong>sich</strong>。
+        第一、二人称需区分 Akk/Dat。
       </div>
     </div>
 
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Einstieg</button>
-      <span class="nav-counter">2 / 6</span>
+      <span class="nav-counter">3 / 8</span>
       <button class="nav-btn" onclick="nextSlide()">Zwei Typen →</button>
     </div>
   </div>
 </div>
 
 <!-- ===== SLIDE 03 · Zwei Typen ===== -->
-<div class="slide" data-slide="2">
-  <div class="slide-inner" tabindex="-1">
-    <div class="slide-tag">03 · Zwei Typen</div>
+<div class="slide" data-slide="3">
+  <div class="slide-inner">
+    <div class="slide-tag">03 · Typen</div>
 
-    <h2 style="font-size:1.4rem;margin-bottom:4px">真反身 vs 假反身</h2>
-    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">将动词拖入正确的分类区域</p>
+    <h2 style="font-size:1.3rem;margin-bottom:4px">真反身 vs 假反身</h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:10px">将动词拖入正确的类别</p>
 
     <div class="type-grid">
       <div class="type-col echt">
-        <h4>✅ 真反身 <span style="font-weight:400;color:var(--text-light);font-size:.78rem">(echt)</span></h4>
-        <p style="font-size:.72rem;color:var(--text-light);margin-bottom:8px">必须带 sich，去掉后不成立</p>
-        <div class="sort-drop" id="dropEcht" ondrop="drop(event,'echt')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')">
-          <div style="opacity:.4;pointer-events:none">拖到这里</div>
-        </div>
+        <h4>✅ 真反身 <span style="font-weight:400;font-size:.76rem;color:var(--grau)">(echt)</span></h4>
+        <p style="font-size:.7rem;color:var(--grau);margin-bottom:6px">必须带反身代词，去掉后不成立</p>
+        <div class="sort-drop" id="dropEcht" ondrop="drop(event,'echt')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')"><div style="opacity:.3">拖到这里</div></div>
       </div>
       <div class="type-col unecht">
-        <h4>⚠️ 假反身 <span style="font-weight:400;color:var(--text-light);font-size:.78rem">(unecht)</span></h4>
-        <p style="font-size:.72rem;color:var(--text-light);margin-bottom:8px">可以带其他宾语</p>
-        <div class="sort-drop" id="dropUnecht" ondrop="drop(event,'unecht')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')">
-          <div style="opacity:.4;pointer-events:none">拖到这里</div>
-        </div>
+        <h4>⚠️ 假反身 <span style="font-weight:400;font-size:.76rem;color:var(--grau)">(unecht)</span></h4>
+        <p style="font-size:.7rem;color:var(--grau);margin-bottom:6px">可以带其他宾语</p>
+        <div class="sort-drop" id="dropUnecht" ondrop="drop(event,'unecht')" ondragover="allowDrop(event)" ondragleave="this.classList.remove('hover')"><div style="opacity:.3">拖到这里</div></div>
       </div>
     </div>
 
-    <div id="sortItems" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px"></div>
+    <div id="sortItems"></div>
     <div class="sort-feedback" id="sortFeedback"></div>
 
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Entdeckung</button>
-      <span class="nav-counter">3 / 6</span>
+      <span class="nav-counter">4 / 8</span>
       <button class="nav-btn" onclick="nextSlide()">Position →</button>
     </div>
   </div>
 </div>
 
 <!-- ===== SLIDE 04 · Position ===== -->
-<div class="slide" data-slide="3">
-  <div class="slide-inner" tabindex="-1">
+<div class="slide" data-slide="4">
+  <div class="slide-inner">
     <div class="slide-tag">04 · Position</div>
 
-    <h2 style="font-size:1.4rem;margin-bottom:4px">📍 <em>sich</em> 的位置规则</h2>
-    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">三种句式，三种位置。在框里输入答案试试看。</p>
+    <h2 style="font-size:1.3rem;margin-bottom:4px"><em>sich</em> 的位置规则</h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:10px">三种句式，三种位置。填入正确反身代词。</p>
 
     <div class="pos-box">
-      <h4><span class="pos-tag simple">Einfacher Satz</span> 简单陈述句</h4>
-      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px"><em>sich</em> 紧跟在动词之后</p>
-      <div class="pos-example">Er freut <span class="sich-highlight">sich</span> über das Geschenk.</div>
-      <div class="pos-exercise">
-        <p style="font-size:.82rem;margin-bottom:4px">✏️ 填入正确的反身代词：</p>
-        <div class="translate-grid">
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">他赶紧。</p><input type="text" class="pos-input" data-answer="sich" data-idx="0" placeholder="Er beeilt ___" oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我们休息。</p><input type="text" class="pos-input" data-answer="uns" data-idx="1" placeholder="Wir ruhen ___ aus" oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-        </div>
+      <h4>📰 简单陈述句 <span style="font-weight:400;font-size:.76rem;color:var(--grau)">— sich 紧跟在动词后</span></h4>
+      <div class="pos-example">Er freut <span class="sich-hl">sich</span> über das Geschenk.</div>
+      <div class="input-grid">
+        <div class="input-item"><label>他赶紧。</label><input class="pos-input" data-ans="sich" placeholder="Er beeilt ___" oninput="checkPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我们休息。</label><input class="pos-input" data-ans="uns" placeholder="Wir ruhen ___ aus" oninput="checkPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
     <div class="pos-box">
-      <h4><span class="pos-tag modal">Modalverb</span> 情态动词句</h4>
-      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px">情态动词占第二位，<em>sich</em> + 实义动词在句末</p>
-      <div class="pos-example">Er kann <span class="sich-highlight">sich</span> nicht konzentrieren.</div>
-      <div class="pos-exercise">
-        <div class="translate-grid">
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">她必须抓紧。</p><input type="text" class="pos-input" data-answer="sich" data-idx="2" placeholder="Sie muss ___ beeilen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我们得坐下。</p><input type="text" class="pos-input" data-answer="uns" data-idx="3" placeholder="Wir müssen ___ setzen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-        </div>
+      <h4>🔧 情态动词句 <span style="font-weight:400;font-size:.76rem;color:var(--grau)">— sich 在句末实义动词前</span></h4>
+      <div class="pos-example">Er kann <span class="sich-hl">sich</span> nicht konzentrieren.</div>
+      <div class="input-grid">
+        <div class="input-item"><label>她必须抓紧。</label><input class="pos-input" data-ans="sich" placeholder="Sie muss ___ beeilen." oninput="checkPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我们得坐下。</label><input class="pos-input" data-ans="uns" placeholder="Wir müssen ___ setzen." oninput="checkPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
     <div class="pos-box">
-      <h4><span class="pos-tag neben">Nebensatz</span> 从句</h4>
-      <p style="font-size:.82rem;color:var(--text-light);margin-bottom:8px">动词在从句末，<em>sich</em> 在连词之后、主语之后</p>
-      <div class="pos-example">Ich glaube, dass er <span class="sich-highlight">sich</span> freut.</div>
-      <div class="pos-exercise">
-        <div class="translate-grid">
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">她说我们该抓紧。</p><input type="text" class="pos-input" data-answer="uns" data-idx="4" placeholder="Sie sagt, dass wir ___ beeilen." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-          <div><p style="font-size:.78rem;color:var(--text-light);margin-bottom:4px">我知道他感兴趣。</p><input type="text" class="pos-input" data-answer="sich" data-idx="5" placeholder="Ich weiß, dass er ___ interessiert." oninput="checkPosInput(this)"><div class="pos-check"></div></div>
-        </div>
+      <h4>📎 从句 <span style="font-weight:400;font-size:.76rem;color:var(--grau)">— sich 在连词后、动词在句末</span></h4>
+      <div class="pos-example">Ich glaube, dass er <span class="sich-hl">sich</span> freut.</div>
+      <div class="input-grid">
+        <div class="input-item"><label>她说我们该抓紧。</label><input class="pos-input" data-ans="uns" placeholder="Sie sagt, dass wir ___ beeilen." oninput="checkPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我知道他感兴趣。</label><input class="pos-input" data-ans="sich" placeholder="Ich weiß, dass er ___ interessiert." oninput="checkPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
     <div class="nav-row">
-      <button class="nav-btn" onclick="prevSlide()">← Zwei Typen</button>
-      <span class="nav-counter">4 / 6</span>
+      <button class="nav-btn" onclick="prevSlide()">← Typen</button>
+      <span class="nav-counter">5 / 8</span>
       <button class="nav-btn" onclick="nextSlide()">Werkstatt →</button>
     </div>
   </div>
 </div>
 
 <!-- ===== SLIDE 05 · Werkstatt ===== -->
-<div class="slide" data-slide="4">
-  <div class="slide-inner" tabindex="-1">
+<div class="slide" data-slide="5">
+  <div class="slide-inner">
     <div class="slide-tag">05 · Werkstatt</div>
 
-    <h2 style="font-size:1.4rem;margin-bottom:4px">📝 Ein Tag in Berlin</h2>
-    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:8px">用反身动词写一段「在柏林的一天」。点击词汇库中的词插入。</p>
+    <h2 style="font-size:1.3rem;margin-bottom:4px">📝 Ein Tag in Berlin</h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:8px">用反身动词写一段柏林日常。下方词汇可点击插入。</p>
 
     <div class="beispiel-box">
-      <strong>📋 范文参考：</strong><br>
-      <span class="de">Ich stehe auf, <b>wasche mich</b> und ziehe <b>mir</b> meinen Lieblingsmantel an. In der U-Bahn <b>setze ich mich</b> ans Fenster und <b>freue mich</b> auf den Tag. Im Café bestelle ich <b>mir</b> einen Latte. Am Abend <b>treffe ich mich</b> mit Freunden. Wir <b>unterhalten uns</b> stundenlang. Ich <b>fühle mich</b> wohl in dieser Stadt.</span>
-      <div class="zh" style="margin-top:4px">我起床，洗漱，穿上我最爱的大衣。在地铁里我坐到窗边，期待着新的一天。在咖啡馆我点了杯拿铁。晚上我和朋友见面，聊了几个小时。在这座城市我感觉很自在。</div>
+      <span style="font-size:.78rem;font-weight:600">📋 范文：</span><br>
+      <span class="de">Ich stehe auf, <b>wasche mich</b> und ziehe <b>mir</b> den Mantel an. In der U-Bahn <b>setze ich mich</b> ans Fenster und <b>freue mich</b> auf den Tag. Im Café bestelle ich <b>mir</b> Latte. Am Abend <b>treffe ich mich</b> mit Freunden. Wir <b>unterhalten uns</b> stundenlang. Ich <b>fühle mich</b> wohl in Berlin.</span>
+      <div class="zh" style="margin-top:4px">我起床，洗漱，穿上大衣。在地铁里坐到窗边，期待着新的一天……</div>
     </div>
 
     <div class="word-bank" id="wordBank"></div>
-
-    <textarea class="werkstatt-textarea" id="werkstattInput" placeholder="Schreib deinen eigenen Text... (用反身动词写一段柏林日常)" oninput="updateCharCount()"></textarea>
-    <div class="char-count" id="charCount">0 字符</div>
+    <textarea class="werkstatt-ta" id="werkstattInput" placeholder="Schreib deinen eigenen Text..." oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0</div>
 
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Position</button>
-      <span class="nav-counter">5 / 6</span>
-      <button class="nav-btn" onclick="nextSlide()">Karten-Spiel →</button>
+      <span class="nav-counter">6 / 8</span>
+      <button class="nav-btn" onclick="nextSlide()">Karten →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SLIDE 06 · Karten-Spiel ===== -->
-<div class="slide" data-slide="5">
-  <div class="slide-inner" tabindex="-1">
-    <div class="slide-tag">06 · Karten-Spiel</div>
+<!-- ===== SLIDE 06 · Karten ===== -->
+<div class="slide" data-slide="6">
+  <div class="slide-inner">
+    <div class="slide-tag">06 · Karten</div>
 
-    <h2 style="font-size:1.4rem;margin-bottom:4px">🃏 Notfall-Karten</h2>
-    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:4px">这个 B1 反身动词够你用了。点击翻转，看例句。</p>
-    <div class="game-progress" id="gameProgress">0 / 0 打开</div>
+    <h2 style="font-size:1.3rem;margin-bottom:4px">🃏 Notfall-Karten</h2>
+    <p style="font-size:.84rem;color:var(--grau);margin-bottom:4px">B1 反身动词，点击翻转看例句。</p>
+    <div class="game-progress" id="gameProgress">0 / 0</div>
 
     <div class="card-grid" id="cardGrid"></div>
 
     <div class="game-btn-row">
-      <button class="game-btn" onclick="flipAllCards()">🔄 全部翻开</button>
-      <button class="game-btn primary" onclick="resetAllCards()">🔁 重新开始</button>
+      <button class="game-btn" onclick="flipAll()">🔄 全部翻开</button>
+      <button class="game-btn primary" onclick="resetCards()">🔁 重新开始</button>
     </div>
 
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Werkstatt</button>
-      <span class="nav-counter">6 / 6</span>
-      <button class="nav-btn" onclick="goToSlide(0)">🔁 从头开始</button>
+      <span class="nav-counter">7 / 8</span>
+      <button class="nav-btn" onclick="nextSlide()">Ende →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== END ===== -->
+<div class="slide" data-slide="7">
+  <div class="slide-inner" style="background:var(--papier-warm)">
+    <div class="end-page">
+      <div class="end-icon">🎯</div>
+      <h2>Gut gemacht!</h2>
+      <div class="divider" style="margin:12px auto"></div>
+      <div class="motto">„Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt."</div>
+      <div class="motto-author">— Ludwig Wittgenstein</div>
+      <div class="summary">
+        反身动词的要点：<br>
+        <strong>mich / mir / sich</strong> — 三个词撑起一整套语法。<br>
+        真反身必须带 sich，假反身可以带其他宾语。<br>
+        sich 在简单句紧跟动词，情态句在句末，从句在连词后。
+      </div>
+      <div class="tags" style="margin-top:16px">
+        <span class="tag">mich</span>
+        <span class="tag">dich</span>
+        <span class="tag">sich</span>
+        <span class="tag">uns</span>
+        <span class="tag">euch</span>
+        <span class="tag">mir</span>
+        <span class="tag">dir</span>
+      </div>
+      <div class="footer-link">
+        <a href="https://github.com/skyflyld/german-reflexive-verbs" target="_blank" style="color:var(--grau);text-decoration:underline">GitHub</a>
+        <span style="margin:0 8px">·</span>
+        <span>🦞 2026</span>
+      </div>
+    </div>
+    <div class="nav-row" style="border:none;margin-top:4px;padding-top:0">
+      <button class="nav-btn" onclick="prevSlide()">← Karten</button>
+      <span class="nav-counter">8 / 8</span>
+      <button class="nav-btn" onclick="goSlide(0)">🔁 Wiederholen</button>
     </div>
   </div>
 </div>
@@ -462,350 +500,187 @@ h1,h2,h3{font-family:'Georgia','Times New Roman',serif;line-height:1.25;letter-s
 <script>
 // ===== Slide Navigation =====
 const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-let slideCount = slides.length;
+let cur = 0, total = slides.length;
 
-function showSlide(idx){
-  idx = Math.max(0, Math.min(slideCount - 1, idx));
-  slides.forEach((s,i)=>{
-    s.style.display = i === idx ? 'flex' : 'none';
-  });
-  currentSlide = idx;
-  updateProgress();
-  updateKBHint();
-  // Focus slide-inner for keyboard events
-  document.querySelectorAll('.slide-inner')[idx]?.focus();
+function showSlide(n){
+  n = Math.max(0, Math.min(total-1, n));
+  slides.forEach((s,i)=>{ s.style.display = i===n ? 'flex' : 'none' });
+  cur = n;
+  updateProg();
+  document.querySelectorAll('.slide-inner')[n]?.focus();
 }
+function nextSlide(){ showSlide(cur+1) }
+function prevSlide(){ showSlide(cur-1) }
+function goSlide(n){ showSlide(n) }
 
-function nextSlide(){ showSlide(currentSlide + 1); }
-function prevSlide(){ showSlide(currentSlide - 1); }
-function goToSlide(idx){ showSlide(idx); }
-
-function updateProgress(){
-  const pct = ((currentSlide + 1) / slideCount) * 100;
-  document.getElementById('progress-bar').style.width = pct + '%';
+function updateProg(){
+  document.getElementById('progress-bar').style.width = ((cur+1)/total*100)+'%';
   document.querySelectorAll('.dot').forEach((d,i)=>{
-    d.classList.toggle('active', i === currentSlide);
-    d.classList.toggle('done', i < currentSlide);
+    d.classList.toggle('active', i===cur);
+    d.classList.toggle('done', i<cur);
   });
+  document.getElementById('kbHint').classList.toggle('hidden', cur===total-1||cur===0);
 }
 
-function updateKBHint(){
-  const h = document.getElementById('kbHint');
-  if(currentSlide === slideCount - 1){
-    h.classList.add('hidden');
-  } else {
-    h.classList.remove('hidden');
-  }
-}
+// Dots
+const dc = document.getElementById('progress-dots');
+for(let i=0;i<total;i++){ let d=document.createElement('div'); d.className='dot'; d.onclick=()=>goSlide(i); dc.appendChild(d) }
 
-// ===== Keyboard =====
+// Keyboard + touch
 document.addEventListener('keydown', e => {
-  if(e.key === 'ArrowRight'){ e.preventDefault(); nextSlide(); }
-  if(e.key === 'ArrowLeft'){ e.preventDefault(); prevSlide(); }
-  if(e.key === 'Home'){ e.preventDefault(); goToSlide(0); }
-  if(e.key === 'End'){ e.preventDefault(); goToSlide(slideCount - 1); }
+  if(e.key==='ArrowRight'){e.preventDefault();nextSlide()}
+  if(e.key==='ArrowLeft'){e.preventDefault();prevSlide()}
+  if(e.key==='Home'){e.preventDefault();goSlide(0)}
+  if(e.key==='End'){e.preventDefault();goSlide(total-1)}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});
+document.addEventListener('touchend',e=>{
+  let d=tx-e.changedTouches[0].screenX;
+  if(Math.abs(d)>60){d>0?nextSlide():prevSlide()}
 });
 
-// Touch swipe
-let touchStartX = 0;
-document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-document.addEventListener('touchend', e => {
-  const diff = touchStartX - e.changedTouches[0].screenX;
-  if(Math.abs(diff) > 60){
-    if(diff > 0) nextSlide(); else prevSlide();
-  }
-});
-
-// ===== Slide 01: Einstieg highlight =====
-function highlight(type){
-  document.querySelectorAll('.scene-highlight').forEach(el => {
-    el.style.transform = el.classList.contains(type) ? 'scale(1.15) translateY(-2px)' : '';
-    el.style.fontWeight = el.classList.contains(type) ? '700' : '';
-  });
-  const note = document.getElementById('scene-note');
-  if(type === 'mich') note.innerHTML = '💡 <strong>ich → mich</strong> (Akkusativ): 当动作的承受者就是主语自己';
-  else if(type === 'mir') note.innerHTML = '💡 <strong>ich → mir</strong> (Dativ): 当涉及"给/为/对自己"做某事';
-  else if(type === 'sich') note.innerHTML = '💡 <strong>er/sie/es → sich</strong>: 第三人称不分 Akk/Dativ，都用 <strong>sich</strong>';
+// ===== Slide 01: Einstieg =====
+function setNote(type){
+  const n = document.getElementById('sceneNote');
+  const notes = {
+    mich: '💡 ich → <strong>mich</strong> (Akk): 动作承受者是主语自己',
+    mir: '💡 ich → <strong>mir</strong> (Dat): 涉及"给/为/对自己"做某事',
+    sich: '💡 er/sie/es → <strong>sich</strong>: 第三人称不分 Akk/Dativ'
+  };
+  n.innerHTML = notes[type] || '';
 }
 
-// ===== Slide 02: Pronoun discovery =====
-const pronouns = [
-  {person:'ich', akk:'mich', dat:'mir'},
-  {person:'du', akk:'dich', dat:'dir'},
-  {person:'er / sie / es', akk:'sich', dat:'sich'},
-  {person:'wir', akk:'uns', dat:'uns'},
-  {person:'ihr', akk:'euch', dat:'euch'},
-  {person:'sie / Sie', akk:'sich', dat:'sich'},
+// ===== Slide 02: Entdeckung =====
+const proData = [
+  {p:'ich', a:'mich', d:'mir'},{p:'du', a:'dich', d:'dir'},
+  {p:'er / sie / es', a:'sich', d:'sich'},{p:'wir', a:'uns', d:'uns'},
+  {p:'ihr', a:'euch', d:'euch'},{p:'sie / Sie', a:'sich', d:'sich'}
 ];
-
-const grid = document.getElementById('pronounGrid');
-pronouns.forEach((p,i)=>{
-  const card = document.createElement('div');
-  card.className = 'pronoun-card';
-  card.dataset.idx = i;
-  card.innerHTML = `
-    <div class="person">${p.person}</div>
-    <div class="akk">Akk: <span class="blank" data-akk="${p.akk}">___</span></div>
-    <div class="dat">Dat: <span class="blank" data-dat="${p.dat}">___</span></div>
-    <div class="hint">点击填空</div>
-  `;
-  card.addEventListener('click', () => {
-    if(card.classList.contains('revealed')) return;
-    card.classList.add('revealed');
-    const blanks = card.querySelectorAll('.blank');
-    blanks[0].textContent = p.akk;
-    blanks[0].style.borderBottom = '2px solid #22c55e';
-    blanks[1].textContent = p.dat;
-    blanks[1].style.borderBottom = '2px solid #22c55e';
-    card.querySelector('.hint').textContent = '✅';
-    // Show table after all revealed
-    if(document.querySelectorAll('.pronoun-card.revealed').length === pronouns.length){
-      setTimeout(() => {
-        document.getElementById('pronounTable').style.display = 'block';
-      }, 400);
-    }
-  });
-  grid.appendChild(card);
+const pg = document.getElementById('pronounGrid');
+proData.forEach((p,i)=>{
+  let c = document.createElement('div'); c.className='pronoun-card';
+  c.innerHTML = `<div class="person">${p.p}</div><div class="akk">Akk: <span class="blank">___</span></div><div class="dat">Dat: <span class="blank">___</span></div><div class="hint">点击填空</div>`;
+  c.onclick = ()=>{
+    if(c.classList.contains('revealed')) return;
+    c.classList.add('revealed');
+    let b = c.querySelectorAll('.blank');
+    b[0].textContent=p.a; b[0].style.borderColor='#22c55e';
+    b[1].textContent=p.d; b[1].style.borderColor='#22c55e';
+    c.querySelector('.hint').textContent='✅';
+    if(document.querySelectorAll('.pronoun-card.revealed').length===proData.length)
+      setTimeout(()=>document.getElementById('pronounTable').style.display='block',300);
+  };
+  pg.appendChild(c);
 });
 
-// ===== Slide 03: Sort game =====
-const sortItems = [
-  {verb:'sich beeilen', text:'赶紧', type:'echt', tag:'真'},
-  {verb:'sich bedanken', text:'感谢', type:'echt', tag:'真'},
-  {verb:'sich erinnern', text:'记起', type:'echt', tag:'真'},
-  {verb:'sich auskennen', text:'熟悉', type:'echt', tag:'真'},
-  {verb:'sich waschen', text:'洗（自己）', type:'unecht', tag:'假'},
-  {verb:'sich anziehen', text:'穿衣服', type:'unecht', tag:'假'},
-  {verb:'sich setzen', text:'坐下', type:'unecht', tag:'假'},
-  {verb:'sich verstecken', text:'躲藏', type:'unecht', tag:'假'},
+// ===== Slide 03: Sort =====
+const sortVerbs = [
+  {v:'sich beeilen', t:'echt'},{v:'sich bedanken', t:'echt'},
+  {v:'sich erinnern', t:'echt'},{v:'sich auskennen', t:'echt'},
+  {v:'sich waschen', t:'unecht'},{v:'sich anziehen', t:'unecht'},
+  {v:'sich setzen', t:'unecht'},{v:'sich verstecken', t:'unecht'}
 ];
+let placed={echt:[],unecht:[]}, unplaced=[...sortVerbs];
 
-let placedItems = {echt:[], unecht:[]};
-let unplaced = [...sortItems];
-
-function renderSortItems(){
-  const container = document.getElementById('sortItems');
-  container.innerHTML = unplaced.map((item,i) => `
-    <div class="sort-item" draggable="true" data-idx="${i}"
-         ondragstart="dragStart(event,${i})"
-         onmouseenter="showTagTip(this,'${item.tag === '真' ? 'echt' : 'unecht'}')"
-         onmouseleave="this.querySelector('.col-tag')?.remove()">
-      <strong>${item.verb}</strong> <span style="color:var(--text-light);font-size:.78rem">${item.text}</span>
-    </div>
-  `).join('');
+function renderSort(){
+  document.getElementById('sortItems').innerHTML = unplaced.map((v,i)=>
+    `<div class="sort-item" draggable="true" data-idx="${i}" ondragstart="dragStart(event,${i})"><strong>${v.v}</strong></div>`
+  ).join('');
 }
-
-function showTagTip(el, type){
-  let tag = document.createElement('span');
-  tag.className = `col-tag ${type}`;
-  tag.textContent = type === 'echt' ? '真反身' : '假反身';
-  tag.style.marginLeft = '6px';
-  tag.style.fontSize = '.65rem';
-  el.appendChild(tag);
+function allowDrop(e){e.preventDefault();e.currentTarget.classList.add('hover')}
+function dragStart(e,i){e.dataTransfer.setData('text',i)}
+function drop(e,t){
+  e.preventDefault();e.currentTarget.classList.remove('hover');
+  let i=parseInt(e.dataTransfer.getData('text'));
+  let v=sortVerbs[i]; if(!v) return;
+  if(v.t===t){ placed[t].push(v); unplaced=unplaced.filter((_,j)=>j!==i);
+    renderDrop(); renderSort(); checkSort(); }
+  else { let fb=document.getElementById('sortFeedback');
+    fb.innerHTML=`❌ "${v.v}" 不是${t==='echt'?'真':'假'}反身动词`; fb.className='sort-feedback show';
+    setTimeout(()=>fb.className='sort-feedback',1800); }
+  document.querySelectorAll('.sort-drop').forEach(d=>d.classList.remove('hover'));
 }
-
-function allowDrop(e){ e.preventDefault(); e.currentTarget.classList.add('hover'); }
-function dragStart(e,idx){
-  e.dataTransfer.setData('text/plain', idx);
-  e.currentTarget.classList.add('dropping');
+function renderDrop(){
+  ['echt','unecht'].forEach(t=>{
+    let el=document.getElementById('drop'+t.charAt(0).toUpperCase()+t.slice(1));
+    el.innerHTML = placed[t].length ? placed[t].map(i=>`<span class="placed">${i.v}</span>`).join('') : '<div style="opacity:.3">拖到这里</div>';
+  });
 }
-function drop(e, targetType){
-  e.preventDefault();
-  e.currentTarget.classList.remove('hover');
-  const idx = parseInt(e.dataTransfer.getData('text/plain'));
-  const item = sortItems[idx];
-  if(!item) return;
-
-  if(item.type === targetType){
-    // Correct!
-    placedItems[targetType].push(item);
-    unplaced = unplaced.filter((_,i) => i !== idx);
-    renderDropZones();
-    renderSortItems();
-    checkSortComplete();
-  } else {
-    // Wrong
-    const fb = document.getElementById('sortFeedback');
-    fb.textContent = `❌ "${item.verb}" 不是${targetType === 'echt' ? '真' : '假'}反身动词！再想想。`;
-    fb.className = 'sort-feedback show wrong';
-    setTimeout(() => { fb.className = 'sort-feedback'; }, 2000);
-  }
-  // Reattach drag listeners
-}
-
-function renderDropZones(){
-  document.getElementById('dropEcht').innerHTML = placedItems.echt.length === 0
-    ? '<div style="opacity:.4;pointer-events:none">拖到这里</div>'
-    : placedItems.echt.map(i => `<span class="placed">${i.verb} <span style="font-size:.72rem;color:var(--text-light)">${i.text}</span></span>`).join('');
-  document.getElementById('dropUnecht').innerHTML = placedItems.unecht.length === 0
-    ? '<div style="opacity:.4;pointer-events:none">拖到这里</div>'
-    : placedItems.unecht.map(i => `<span class="placed">${i.verb} <span style="font-size:.72rem;color:var(--text-light)">${i.text}</span></span>`).join('');
-}
-
-function checkSortComplete(){
-  const fb = document.getElementById('sortFeedback');
-  if(unplaced.length === 0){
-    fb.textContent = '✅ 全部正确！真反身不能离开 sich，假反身可以带其他宾语。';
-    fb.className = 'sort-feedback show perfect';
+function checkSort(){
+  if(unplaced.length===0){
+    let fb=document.getElementById('sortFeedback');
+    fb.innerHTML='✅ 全部正确！真反身必须带 sich，假反身可换其他宾语。';
+    fb.className='sort-feedback show';
   }
 }
+renderSort(); renderDrop();
 
-renderSortItems();
-renderDropZones();
-
-// ===== Slide 04: Position input =====
-function checkPosInput(input){
-  const answer = input.dataset.answer.trim().toLowerCase();
-  const val = input.value.trim().toLowerCase();
-  const check = input.parentElement.querySelector('.pos-check');
-
-  if(val === ''){ input.className = 'pos-input'; check.textContent = ''; check.className = 'pos-check'; return; }
-
-  if(val === answer){
-    input.className = 'pos-input correct';
-    check.textContent = '✅ Richtig!';
-    check.className = 'pos-check ok';
-  } else {
-    input.className = 'pos-input wrong';
-    check.textContent = `❌ 再试——提示: ${answer.length > 3 ? '第三/四人称反身代词' : '与人称对应'}`;
-    check.className = 'pos-check err';
-  }
+// ===== Slide 04: Position =====
+function checkPos(el){
+  let ans=el.dataset.ans.trim().toLowerCase(), val=el.value.trim().toLowerCase();
+  let ck=el.parentElement.querySelector('.pos-check');
+  if(!val){el.className='pos-input';ck.textContent='';return}
+  if(val===ans){el.className='pos-input ok';ck.textContent='✅ Richtig!';ck.className='pos-check ok'}
+  else{el.className='pos-input err';ck.textContent='❌ 再试试';ck.className='pos-check err'}
 }
 
 // ===== Slide 05: Werkstatt =====
-const wordBankItems = [
-  {text:'mich', hint:'ich Akk'},
-  {text:'dich', hint:'du Akk'},
-  {text:'sich', hint:'er/sie/es Akk/Dat'},
-  {text:'uns', hint:'wir'},
-  {text:'euch', hint:'ihr'},
-  {text:'mir', hint:'ich Dat'},
-  {text:'dir', hint:'du Dat'},
-  {text:'freue mich', hint:'感到高兴'},
-  {text:'beeile mich', hint:'赶紧'},
-  {text:'fühle mich', hint:'感觉'},
-  {text:'treffe mich', hint:'见面'},
-  {text:'setze mich', hint:'坐下'},
-  {text:'wasche mich', hint:'洗漱'},
-  {text:'interessiere mich', hint:'感兴趣'},
-  {text:'konzentriere mich', hint:'专注'},
-  {text:'kann … mich', hint:'情态 + 反身'},
+const words = [
+  {t:'mich',h:'ich Akk'},{t:'dich',h:'du Akk'},{t:'sich',h:'er/sie/es Akk/Dat'},
+  {t:'uns',h:'wir'},{t:'euch',h:'ihr'},{t:'mir',h:'ich Dat'},{t:'dir',h:'du Dat'},
+  {t:'freue mich',h:'感到高兴'},{t:'beeile mich',h:'赶紧'},{t:'fühle mich',h:'感觉'},
+  {t:'treffe mich',h:'见面'},{t:'setze mich',h:'坐下'},{t:'wasche mich',h:'洗漱'},
+  {t:'interessiere mich',h:'感兴趣'}
 ];
-
-const wordBank = document.getElementById('wordBank');
-wordBankItems.forEach(w => {
-  const chip = document.createElement('span');
-  chip.className = 'chip';
-  chip.textContent = w.text;
-  chip.title = w.hint;
-  chip.addEventListener('click', () => {
-    const ta = document.getElementById('werkstattInput');
-    const cursor = ta.selectionStart || ta.value.length;
-    const before = ta.value.substring(0, cursor);
-    const after = ta.value.substring(cursor);
-    ta.value = before + w.text + ' ' + after;
-    ta.focus();
-    ta.selectionStart = ta.selectionEnd = cursor + w.text.length + 1;
-    updateCharCount();
-    chip.classList.add('used');
-  });
-  wordBank.appendChild(chip);
+const wb=document.getElementById('wordBank');
+words.forEach(w=>{
+  let c=document.createElement('span');c.className='chip';c.textContent=w.t;c.title=w.h;
+  c.onclick=()=>{
+    let ta=document.getElementById('werkstattInput');
+    ta.value+=w.t+' '; ta.focus(); updateCharCount(); c.classList.add('used');
+  };
+  wb.appendChild(c);
 });
-
 function updateCharCount(){
-  const len = document.getElementById('werkstattInput').value.length;
-  document.getElementById('charCount').textContent = `${len} 字符 · 试试用 40-80 字符写一段柏林日常`;
+  let l=document.getElementById('werkstattInput').value.length;
+  document.getElementById('charCount').textContent=l+' 字符';
 }
 
-// ===== Slide 06: Card game =====
-const cardData = [
-  {verb:'sich freuen', meaning:'感到高兴', example:'Ich freue mich auf den Urlaub.', icon:'😊'},
-  {verb:'sich beeilen', meaning:'赶紧', example:'Wir müssen uns beeilen.', icon:'🏃'},
-  {verb:'sich interessieren', meaning:'感兴趣', example:'Sie interessiert sich für Kunst.', icon:'🎨'},
-  {verb:'sich konzentrieren', meaning:'集中注意力', example:'Ich konzentriere mich auf die Arbeit.', icon:'🎯'},
-  {verb:'sich ausruhen', meaning:'休息', example:'Nach der Arbeit ruhe ich mich aus.', icon:'😌'},
-  {verb:'sich erinnern', meaning:'记起', example:'Er erinnert sich an unsere Reise.', icon:'🧠'},
-  {verb:'sich auskennen', meaning:'熟悉', example:'Ich kenne mich in Berlin aus.', icon:'🗺️'},
-  {verb:'sich verlieben', meaning:'爱上', example:'Sie hat sich in Berlin verliebt.', icon:'💛'},
-  {verb:'sich anmelden', meaning:'报名', example:'Ich melde mich zum Kurs an.', icon:'📝'},
-  {verb:'sich etwas vorstellen', meaning:'想象', example:'Ich kann mir das gut vorstellen.', icon:'💭'},
-  {verb:'sich wehtun', meaning:'弄伤自己', example:'Pass auf, sonst tust du dir weh!', icon:'🩹'},
-  {verb:'sich etwas kaufen', meaning:'给自己买', example:'Ich kaufe mir ein Berlin-Ticket.', icon:'🛍️'},
-  {verb:'sich etwas merken', meaning:'记住', example:'Ich merke mir deine Nummer.', icon:'📌'},
-  {verb:'sich bedanken', meaning:'感谢', example:'Ich möchte mich ganz herzlich bedanken.', icon:'🙏'},
-  {verb:'sich kümmern', meaning:'关心', example:'Sie kümmert sich um die Gäste.', icon:'🤗'},
+// ===== Slide 06: Karten =====
+const deck = [
+  {v:'sich freuen',m:'感到高兴',e:'Ich freue mich auf den Urlaub.',i:'😊'},
+  {v:'sich beeilen',m:'赶紧',e:'Wir müssen uns beeilen.',i:'🏃'},
+  {v:'sich interessieren',m:'感兴趣',e:'Sie interessiert sich für Kunst.',i:'🎨'},
+  {v:'sich konzentrieren',m:'集中注意力',e:'Ich konzentriere mich auf die Arbeit.',i:'🎯'},
+  {v:'sich ausruhen',m:'休息',e:'Nach der Arbeit ruhe ich mich aus.',i:'😌'},
+  {v:'sich erinnern',m:'记起',e:'Er erinnert sich an unsere Reise.',i:'🧠'},
+  {v:'sich auskennen',m:'熟悉',e:'Ich kenne mich in Berlin aus.',i:'🗺️'},
+  {v:'sich verlieben',m:'爱上',e:'Sie hat sich in Berlin verliebt.',i:'💛'},
+  {v:'sich anmelden',m:'报名',e:'Ich melde mich zum Kurs an.',i:'📝'},
+  {v:'sich etwas vorst.',m:'想象',e:'Ich kann mir das gut vorstellen.',i:'💭'},
+  {v:'sich wehtun',m:'弄伤',e:'Pass auf, sonst tust du dir weh!',i:'🩹'},
+  {v:'sich etwas kaufen',m:'给自己买',e:'Ich kaufe mir ein Berlin-Ticket.',i:'🛍️'},
+  {v:'sich etwas merken',m:'记住',e:'Ich merke mir deine Nummer.',i:'📌'},
+  {v:'sich bedanken',m:'感谢',e:'Ich möchte mich herzlich bedanken.',i:'🙏'},
+  {v:'sich kümmern',m:'关心',e:'Sie kümmert sich um die Gäste.',i:'🤗'},
 ];
-
-const cardGrid = document.getElementById('cardGrid');
-let cardsFlipped = new Set();
-
+let flipped=new Set();
+const cg=document.getElementById('cardGrid');
 function renderCards(){
-  cardGrid.innerHTML = '';
-  cardsFlipped = new Set();
-  cardData.forEach((c,i) => {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.dataset.idx = i;
-    card.innerHTML = `
-      <div class="game-inner">
-        <div class="game-front"><div class="icon">${c.icon}</div>${c.verb}</div>
-        <div class="game-back">
-          <div class="verb">${c.verb}</div>
-          <div class="meaning">${c.meaning}</div>
-          <div class="example">${c.example}</div>
-        </div>
-      </div>
-    `;
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
-      if(card.classList.contains('flipped')){
-        cardsFlipped.add(i);
-      } else {
-        cardsFlipped.delete(i);
-      }
-      updateGameProgress();
-    });
-    cardGrid.appendChild(card);
+  cg.innerHTML=''; flipped=new Set();
+  deck.forEach((c,i)=>{
+    let el=document.createElement('div'); el.className='game-card';
+    el.innerHTML=`<div class="game-inner"><div class="game-front"><div class="icon">${c.i}</div>${c.v}</div><div class="game-back"><div class="verb">${c.v}</div><div class="meaning">${c.m}</div><div class="example">${c.e}</div></div></div>`;
+    el.onclick=()=>{el.classList.toggle('flipped');el.classList.contains('flipped')?flipped.add(i):flipped.delete(i);updateGame()};
+    cg.appendChild(el);
   });
-  updateGameProgress();
+  updateGame();
 }
-
-function updateGameProgress(){
-  const total = cardData.length;
-  const open = cardsFlipped.size;
-  document.getElementById('gameProgress').textContent = `${open} / ${total} 打开 · ${
-    open === total ? '✅ 全部！你已经掌握了' : open > total * 0.7 ? '快好了 💪' : '试试再翻开几张'
-  }`;
-}
-
-function flipAllCards(){
-  document.querySelectorAll('.game-card').forEach((c,i) => {
-    c.classList.add('flipped');
-    cardsFlipped.add(i);
-  });
-  updateGameProgress();
-}
-
-function resetAllCards(){
-  document.querySelectorAll('.game-card').forEach((c,i) => {
-    c.classList.remove('flipped');
-    cardsFlipped.delete(i);
-  });
-  updateGameProgress();
-}
-
+function updateGame(){document.getElementById('gameProgress').textContent=`${flipped.size} / ${deck.length}`}
+function flipAll(){document.querySelectorAll('.game-card').forEach((c,i)=>{c.classList.add('flipped');flipped.add(i)});updateGame()}
+function resetCards(){document.querySelectorAll('.game-card').forEach((c,i)=>{c.classList.remove('flipped');flipped.delete(i)});updateGame()}
 renderCards();
-
-// ===== Init =====
-// Create dots
-const dotContainer = document.getElementById('progress-dots');
-for(let i = 0; i < slideCount; i++){
-  const dot = document.createElement('div');
-  dot.className = 'dot';
-  dot.addEventListener('click', () => goToSlide(i));
-  dotContainer.appendChild(dot);
-}
 
 showSlide(0);
 </script>
