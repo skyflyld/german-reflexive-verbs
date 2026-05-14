@@ -11,6 +11,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--schwarz:#0d0d0d;--rot:#c1121f;--gold:#f4a261;--gold-light:#fef0d9;--papier:#f7f3eb;--papier-warm:#faf6ef;--weiss:#fdfdfc;--grau:#4a4a4a;--grau-light:#8c8c8c;--linie:#d4c9b8;--linie-fein:#e8e0d4;--shadow:0 4px 20px rgba(0,0,0,.1);--shadow-lg:0 12px 48px rgba(0,0,0,.14);--radius:8px;--radius-lg:14px;--ease:cubic-bezier(.4,0,.2,1)}
 html{scroll-behavior:smooth;font-size:16px;background:var(--papier)}
+.selectable{user-select:text;-webkit-user-select:text}
+.de,.zh,.pos-example,.beispiel-box,.scene-note,.pronoun-table,.comp-table,.werkstatt-ta,.game-back,.exit-ticket textarea,.exit-ticket input{user-select:text;-webkit-user-select:text}
 body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:var(--schwarz);line-height:1.7;overflow:hidden;height:100vh;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-size-adjust:100%;background:var(--papier);user-select:none}
 h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-height:1.25;letter-spacing:-0.01em}
 .de{font-style:normal;font-weight:500;font-size:.95rem}.zh{font-size:.84em;line-height:1.5;color:var(--grau-light);font-weight:400}
@@ -68,9 +70,9 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 .scene-box .zh{font-size:.84rem}
 .scene-box .scene-icon{font-size:1.1rem;margin-right:6px}
 .scene-box .scene-hint{font-size:.72rem;color:var(--grau-light);margin-top:6px;text-align:center}
-.highlight-word{padding:2px 5px;border-radius:3px;transition:all .2s;font-weight:600;cursor:default}
-.highlight-word.typ-mich{background:rgba(244,162,97,.2);color:#b87333}
-.highlight-word.typ-mir{background:rgba(193,18,31,.1);color:var(--rot)}
+.highlight-word{padding:2px 5px;border-radius:3px;transition:all .2s;font-weight:600;cursor:pointer}
+.highlight-word.typ-mich{background:rgba(193,18,31,.08);color:var(--rot)}
+.highlight-word.typ-mir{background:rgba(244,162,97,.15);color:var(--gold)}
 .highlight-word.typ-sich{background:rgba(212,201,184,.3);color:var(--grau)}
 .scene-note{padding:12px 16px;background:var(--gold-light);border-radius:var(--radius);border-left:3px solid var(--gold);font-size:.85rem;margin-top:8px}
 
@@ -81,7 +83,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 .pronoun-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--gold)}
 .pronoun-card .person{font-weight:600;font-size:.92rem}
 .pronoun-card .akk{font-size:.84rem;color:var(--rot);margin-top:3px}
-.pronoun-card .dat{font-size:.84rem;color:var(--grau);margin-top:2px}
+.pronoun-card .dat{font-size:.84rem;color:var(--gold);margin-top:2px}
 .pronoun-card .hint{font-size:.62rem;color:var(--grau-light);margin-top:3px}
 .pronoun-card.revealed{border-color:var(--gold);background:var(--gold-light)}
 .pronoun-card .blank{display:inline-block;min-width:34px;border-bottom:2px dashed var(--gold);color:var(--rot);font-weight:600;padding:0 3px}
@@ -95,7 +97,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 .comp-table th,.comp-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--linie-fein);vertical-align:top}
 .comp-table th{background:var(--schwarz);color:var(--gold);font-size:.76rem;letter-spacing:1px;font-weight:600}
 .comp-table .ak{color:var(--rot);font-weight:500}
-.comp-table .da{color:var(--grau);font-weight:500}
+.comp-table .da{color:var(--gold);font-weight:500}
 .comp-table .tag-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
 
 /* ===== Click classify ===== */
@@ -171,7 +173,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 .kb-hint kbd{background:var(--linie);padding:1px 6px;border-radius:3px;font-family:inherit;color:var(--grau)}
 .fade-in{animation:fadeIn .4s var(--ease) forwards}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.touch-zone{position:fixed;top:0;bottom:0;width:25%;z-index:100}
+.touch-zone{position:fixed;top:0;bottom:0;width:13%;z-index:100}
 .touch-zone.left{left:0}.touch-zone.right{right:0}
 .slide-inner::-webkit-scrollbar{width:4px}
 .slide-inner::-webkit-scrollbar-thumb{background:var(--linie);border-radius:2px}
@@ -368,8 +370,8 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       <h4>📰 简单陈述句</h4><div class="pos-rule-desc"><em>sich</em> 紧跟在变位动词之后</div>
       <div class="pos-example">Er freut <span class="sich-hl">sich</span> über das Geschenk.</div>
       <div class="input-grid">
-        <div class="input-item"><label>他赶紧。</label><input class="pos-input" data-a="sich" placeholder="Er beeilt ___" oninput="cPos(this)"><div class="pos-check"></div></div>
-        <div class="input-item"><label>我们休息。</label><input class="pos-input" data-a="uns" placeholder="Wir ruhen ___ aus" oninput="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>他赶紧。</label><input class="pos-input" data-a="sich" placeholder="Er beeilt ___" onblur="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我们休息。</label><input class="pos-input" data-a="uns" placeholder="Wir ruhen ___ aus" onblur="cPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
@@ -377,8 +379,8 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       <h4>🔧 情态动词句</h4><div class="pos-rule-desc"><em>sich</em> 在句末实义动词之前</div>
       <div class="pos-example">Er kann <span class="sich-hl">sich</span> nicht konzentrieren.</div>
       <div class="input-grid">
-        <div class="input-item"><label>她必须抓紧。</label><input class="pos-input" data-a="sich" placeholder="Sie muss ___ beeilen." oninput="cPos(this)"><div class="pos-check"></div></div>
-        <div class="input-item"><label>我们得坐下。</label><input class="pos-input" data-a="uns" placeholder="Wir müssen ___ setzen." oninput="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>她必须抓紧。</label><input class="pos-input" data-a="sich" placeholder="Sie muss ___ beeilen." onblur="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我们得坐下。</label><input class="pos-input" data-a="uns" placeholder="Wir müssen ___ setzen." onblur="cPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
@@ -401,8 +403,8 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       <h4>📎 从句规则</h4><div class="pos-rule-desc"><em>sich</em> 在连词+主语之后，动词（变位形式）在句末</div>
       <div class="pos-example">Ich glaube, dass er <span class="sich-hl">sich</span> freut.</div>
       <div class="input-grid">
-        <div class="input-item"><label>她说我们该抓紧。</label><input class="pos-input" data-a="uns" placeholder="Sie sagt, dass wir ___ beeilen." oninput="cPos(this)"><div class="pos-check"></div></div>
-        <div class="input-item"><label>我知道他感兴趣。</label><input class="pos-input" data-a="sich" placeholder="Ich weiß, dass er ___ interessiert." oninput="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>她说我们该抓紧。</label><input class="pos-input" data-a="uns" placeholder="Sie sagt, dass wir ___ beeilen." onblur="cPos(this)"><div class="pos-check"></div></div>
+        <div class="input-item"><label>我知道他感兴趣。</label><input class="pos-input" data-a="sich" placeholder="Ich weiß, dass er ___ interessiert." onblur="cPos(this)"><div class="pos-check"></div></div>
       </div>
     </div>
 
@@ -429,6 +431,18 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     <div class="word-bank" id="wordBank"></div>
     <textarea class="werkstatt-ta" id="werkstattInput" placeholder="Schreib deinen eigenen Text..." oninput="updChars()"></textarea>
     <div class="char-count" id="charCnt">0</div>
+    <div class="self-check" style="margin-top:8px;padding:10px 14px;background:var(--papier);border-radius:var(--radius);border:1px solid var(--linie-fein)">
+      <div style="font-size:.78rem;font-weight:600;margin-bottom:4px">✅ 自检清单 <span style="font-weight:400;color:var(--grau-light)">（点击打勾，自我评估）</span></div>
+      <label style="display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--grau);margin:3px 0;cursor:pointer">
+        <input type="checkbox" onchange="this.parentElement.style.textDecoration=this.checked?'line-through':'none'"> 至少用了 3 个反身动词
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--grau);margin:3px 0;cursor:pointer">
+        <input type="checkbox" onchange="this.parentElement.style.textDecoration=this.checked?'line-through':'none'"> 包含至少一个 Dativ (mir/dir)
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--grau);margin:3px 0;cursor:pointer">
+        <input type="checkbox" onchange="this.parentElement.style.textDecoration=this.checked?'line-through':'none'"> 包含带介词搭配 (sich freuen auf, sich interessieren für…)
+      </label>
+    </div>
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Position (2/2)</button>
       <span class="nav-counter">8 / 11</span>
@@ -510,7 +524,7 @@ function goSlide(i){showSlide(i)}
 function updProg(){document.getElementById('progress-bar').style.width=((cur+1)/n*100)+'%';document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i===cur);d.classList.toggle('done',i<cur)});document.getElementById('kbHint').classList.toggle('hidden',cur===0||cur===n-1)}
 const dc=document.getElementById('progress-dots');for(let i=0;i<n;i++){let d=document.createElement('div');d.className='dot';d.onclick=()=>goSlide(i);dc.appendChild(d)}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();nextSlide()}if(e.key==='ArrowLeft'){e.preventDefault();prevSlide()}if(e.key==='Home'){e.preventDefault();goSlide(0)}if(e.key==='End'){e.preventDefault();goSlide(n-1)}});
-let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{let d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>60){d>0?nextSlide():prevSlide()}});
+let tx=0;function isInteractive(el){while(el){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.classList.contains('game-card')||el.classList.contains('chip')||el.classList.contains('pronoun-card')||el.classList.contains('scene-box')||el.classList.contains('start-btn')||el.classList.contains('nav-btn')||el.classList.contains('slide-tag')||el.closest('.game-btn-row'))return true;el=el.parentElement}return false}document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{if(isInteractive(e.target))return;let d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>60){d>0?nextSlide():prevSlide()}});
 
 // ===== SLIDE 01: Step reveal =====
 let sceneStates={1:0,2:0,3:0};
@@ -534,7 +548,7 @@ document.addEventListener('click',function(e){
     const txt=e.target.textContent;
     const note=document.getElementById('explainBox');
     note.classList.add('visible');
-    const map={mich:'💡 ich → <strong>mich</strong> (Akk): 动作承受者是主语自己',mir:'💡 ich → <strong>mir</strong> (Dat): 涉及"给自己"做',sich:'💡 er/sie/es/sie → <strong>sich</strong>: 第三人称不分格'};
+    const map={mich:'🔴 ich → <strong>mich</strong> (Akk): 动作承受者是主语自己',mir:'🟡 ich → <strong>mir</strong> (Dat): 涉及给自己做',sich:'⚪ er/sie/es/sie → <strong>sich</strong>: 第三人称不分格'};
     note.innerHTML=map[txt]||'';
   }
 });
@@ -547,16 +561,16 @@ const pg=document.getElementById('pronounGrid');let allRevealed=0;
 proData.forEach((p,i)=>{
   let c=document.createElement('div');c.className='pronoun-card';
   c.innerHTML=`<div class="person">${p.p}</div><div class="akk">Akk: <span class="blank">___</span></div><div class="dat">Dat: <span class="blank">___</span></div><div class="hint">点击填空</div>`;
-  c.onclick=()=>{if(c.classList.contains('revealed'))return;c.classList.add('revealed');let b=c.querySelectorAll('.blank');b[0].textContent=p.a;b[0].style.borderColor='#22c55e';b[1].textContent=p.d;b[1].style.borderColor='#22c55e';c.querySelector('.hint').textContent='✅';allRevealed++;if(allRevealed===proData.length){setTimeout(()=>{document.getElementById('pronounTable').style.display='block'},300);setTimeout(()=>{document.getElementById('compSection').style.display='block'},600)}};
+  c.onclick=()=>{if(c.classList.contains('revealed'))return;c.classList.add('revealed');let b=c.querySelectorAll('.blank');b[0].textContent=p.a;b[0].style.borderColor='#22c55e';b[1].textContent=p.d;b[1].style.borderColor='#22c55e';c.querySelector('.hint').textContent='✅';allRevealed++;if(allRevealed===proData.length){setTimeout(()=>{document.getElementById('pronounTable').style.display='block'},300)}};
   pg.appendChild(c);
 });
 
 // ===== SLIDE 03: Click classify =====
 const classifyList=[
-  {v:'sich beeilen',m:'赶紧，匆忙',t:'echt'},{v:'sich bedanken',m:'感谢',t:'echt'},
-  {v:'sich erinnern',m:'记起，想起',t:'echt'},{v:'sich auskennen',m:'熟悉，精通',t:'echt'},
-  {v:'sich waschen',m:'洗漱',t:'unecht'},{v:'sich anziehen',m:'穿衣服',t:'unecht'},
-  {v:'sich setzen',m:'坐下',t:'unecht'},{v:'sich verstecken',m:'躲藏',t:'unecht'}
+  {v:'sich beeilen',m:'赶紧，匆忙',t:'echt',r:'beeilen 不能单独用: ✗ Ich beeile.'},{v:'sich bedanken',m:'感谢',t:'echt',r:'bedanken 不能单独用: ✗ Ich bedanke.'},
+  {v:'sich erinnern',m:'记起，想起',t:'echt',r:'erinnern + sich = 记起. 无 sich = 提醒别人.'},{v:'sich auskennen',m:'熟悉，精通',t:'echt',r:'aus|kennen 必须带 sich: ✗ Ich kenne aus.'},
+  {v:'sich waschen',m:'洗漱',t:'unecht',r:'可换宾语: ✓ Ich wasche das Kind.'},{v:'sich anziehen',m:'穿衣服',t:'unecht',r:'可换宾语: ✓ Ich ziehe den Mantel an.'},
+  {v:'sich setzen',m:'坐下',t:'unecht',r:'可换宾语: ✓ Ich setze das Kind hin.'},{v:'sich verstecken',m:'躲藏',t:'unecht',r:'可换宾语: ✓ Ich verstecke den Schatz.'}
 ];
 let clsIdx=0,clsCorrect=0,clsDone=[],clsResults={echt:[],unecht:[]};
 
@@ -565,8 +579,8 @@ function classify(type){
   const item=classifyList[clsIdx];
   const fb=document.getElementById('classifyFb');
   const right=item.t===type;
-  if(right){clsCorrect++;clsResults[type].push(item.v);fb.textContent='✅ Richtig!';fb.className='classify-fb ok'}
-  else{fb.textContent=`❌ Falsch! "${item.v}" 是${item.t==='echt'?'真':'假'}反身动词`;fb.className='classify-fb err'}
+  if(right){clsCorrect++;clsResults[type].push(item.v);fb.innerHTML='✅ Richtig!<br><span style=font-size:.78rem;color:var(--grau)>'+item.r+'</span>';fb.className='classify-fb ok'}
+  else{fb.innerHTML='❌ Falsch!<br><span style=font-size:.78rem;color:var(--grau)>'+item.r+'</span>';fb.className='classify-fb err'}
   clsDone.push(item);
   clsIdx++;
   document.getElementById('classifyProg').textContent=`${clsCorrect} / ${clsDone.length} 正确 · ${clsIdx} / ${classifyList.length}`;
@@ -590,6 +604,8 @@ function classify(type){
 }
 
 // ===== SLIDE 04: Position =====
+
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.classList.contains('pos-input')){e.preventDefault();cPos(e.target)}});
 function cPos(el){
   let a=el.dataset.a.trim().toLowerCase(),v=el.value.trim().toLowerCase();
   let ck=el.parentElement.querySelector('.pos-check');
