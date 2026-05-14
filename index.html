@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#0d1321">
 <title>Reflexive Verben — Berlin, reflexiv</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,6 +14,31 @@ html{scroll-behavior:smooth;font-size:16px;background:var(--papier)}
 .selectable{user-select:text;-webkit-user-select:text}
 .de,.zh,.pos-example,.beispiel-box,.scene-note,.pronoun-table,.comp-table,.werkstatt-ta,.game-back,.exit-ticket textarea,.exit-ticket input{user-select:text;-webkit-user-select:text}
 body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:var(--schwarz);line-height:1.7;overflow:hidden;height:100vh;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-size-adjust:100%;background:var(--papier);user-select:none}
+/* Dark theme (cover + ende) */
+.slide.dark{background:linear-gradient(160deg,#0d1321 0%,#1a1a2e 50%,#0d1321 100%)}
+.slide.dark .slide-inner{background:transparent;box-shadow:none;border:none}
+.slide.dark h1,.slide.dark h2{color:var(--weiss)}
+.slide.dark .label{color:rgba(255,255,255,.45)}
+.slide.dark .subtitle{color:rgba(255,255,255,.6)!important}
+.slide.dark .desc{color:rgba(255,255,255,.65)!important}
+.slide.dark .divider{background:var(--gold)}
+.slide.dark .tag{background:rgba(255,255,255,.1);color:var(--weiss);border-color:rgba(255,255,255,.2)}
+.slide.dark .start-btn{background:var(--gold);color:var(--schwarz)}
+.slide.dark .start-btn:hover{background:#e08c3d}
+.slide.dark .nav-btn{background:var(--gold);color:var(--schwarz)}
+.slide.dark .nav-btn:hover{background:#e08c3d}
+.slide.dark .nav-counter{color:rgba(255,255,255,.45)}
+.slide.dark .end-icon{filter:brightness(1.2)}
+.slide.dark .summary{color:rgba(255,255,255,.65)!important}
+.slide.dark .exit-ticket label{color:rgba(255,255,255,.8)}
+.slide.dark .exit-ticket textarea{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:var(--weiss)}
+.slide.dark .exit-ticket textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.18)}
+.slide.dark .exit-ticket textarea::placeholder{color:rgba(255,255,255,.35)}
+.slide.dark .save-btn{background:var(--gold);color:var(--schwarz)}
+.slide.dark .saved-note{color:rgba(255,255,255,.5)}
+.slide.dark .motto{color:rgba(255,255,255,.6)}
+.slide.dark .motto-author{color:rgba(255,255,255,.4)}
+
 h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-height:1.25;letter-spacing:-0.01em}
 .de{font-style:normal;font-weight:500;font-size:.95rem}.zh{font-size:.84em;line-height:1.5;color:var(--grau-light);font-weight:400}
 
@@ -188,11 +213,11 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 <div class="kb-hint" id="kbHint"><kbd>←</kbd> <kbd>→</kbd> 翻页 · 点击对话 / 卡片</div>
 
 <!-- ===== COVER (slide 0) ===== -->
-<div class="slide" data-slide="0">
-  <div class="slide-inner" style="background:var(--papier-warm)">
+<div class="slide dark" data-slide="0">
+  <div class="slide-inner">
     <div class="cover">
       <div class="label">Grammatik · B1</div>
-      <h1>Berlin, <span class="accent-red">reflexiv</span></h1>
+      <h1>Berlin, <span style="color:var(--gold)">reflexiv</span></h1>
       <div class="subtitle" style="font-size:.82rem;color:var(--grau)">Reflexive Verben im Alltag</div>
       <div class="divider"></div>
       <div class="desc">
@@ -472,8 +497,8 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 </div>
 
 <!-- ===== END (slide 9) ===== -->
-<div class="slide" data-slide="9">
-  <div class="slide-inner" style="background:var(--papier-warm)">
+<div class="slide dark" data-slide="9">
+  <div class="slide-inner">
     <div class="end-page">
       <div class="end-icon">🎯</div>
       <h2>Gut gemacht!</h2>
