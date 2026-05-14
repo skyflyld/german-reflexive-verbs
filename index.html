@@ -250,66 +250,75 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
 
     <div class="nav-row">
       <div></div>
-      <span class="nav-counter">2 / 8</span>
-      <button class="nav-btn" onclick="nextSlide()">Entdeckung →</button>
+      <span class="nav-counter">2 / 11</span>
+      <button class="nav-btn" onclick="nextSlide()">Pronomen →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SLIDE 02 · Entdeckung (slide 2) ===== -->
+<!-- ===== SLIDE 02 · Pronomen (slide 2) ===== -->
 <div class="slide" data-slide="2">
   <div class="slide-inner">
-    <div class="slide-tag">02 · Entdeckung</div>
-    <h2 style="font-size:1.3rem;margin-bottom:6px">反身代词 · 规律发现</h2>
-    <p style="font-size:.82rem;color:var(--grau);margin-bottom:8px">点击卡片填空——注意 <strong>Akkusativ</strong> 和 <strong>Dativ</strong> 的异同</p>
-
+    <div class="slide-tag">02 · Pronomen</div>
+    <h2 style="font-size:1.3rem;margin-bottom:6px">反身代词 · 自己填空</h2>
+    <p style="font-size:.82rem;color:var(--grau);margin-bottom:8px">点击每张卡片——填上对应的反身代词，注意 <strong>Akk</strong> 和 <strong>Dat</strong> 的区别</p>
     <div class="pronoun-grid" id="pronounGrid"></div>
-    <div id="pronounTable" style="display:none" class="fade-in">
-      <h3 style="font-size:.86rem;margin-bottom:6px">📊 完整对照表</h3>
-      <table class="pronoun-table">
-        <thead><tr><th>人称</th><th>Akkusativ</th><th>Dativ</th></tr></thead>
-        <tbody>
-          <tr><td>ich</td><td>mich</td><td>mir</td></tr>
-          <tr><td>du</td><td>dich</td><td>dir</td></tr>
-          <tr><td>er/sie/es</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
-          <tr><td>wir</td><td>uns</td><td>uns</td></tr>
-          <tr><td>ihr</td><td>euch</td><td>euch</td></tr>
-          <tr><td>sie/Sie</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
-        </tbody>
-      </table>
-      <div style="padding:6px 10px;background:var(--papier);border-radius:var(--radius);font-size:.76rem">🔑 第三人称不分格，第一、二人称需区分</div>
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Einstieg</button>
+      <span class="nav-counter">3 / 11</span>
+      <button class="nav-btn" onclick="nextSlide()">Tabelle →</button>
     </div>
+  </div>
+</div>
 
-    <!-- Akk vs Dat comparison table -->
-    <div id="compSection" style="display:none" class="fade-in">
-      <h3 style="font-size:.86rem;margin:14px 0 6px;color:var(--schwarz)">⚖️ Akkusativ vs Dativ 对比</h3>
-      <p style="font-size:.76rem;color:var(--grau);margin-bottom:6px">同一动词，Akkusativ 和 Dativ 的用法区别：</p>
-      <table class="comp-table">
-        <thead><tr><th>动词</th><th style="color:var(--rot)">Akkusativ (动作直接承受者)</th><th style="color:var(--grau)">Dativ (为自己/对某人做)</th></tr></thead>
-        <tbody>
-          <tr><td>waschen</td><td class="ak">Ich wasche <b>mich</b>.<br><span class="zh">我洗(自己)。</span></td><td class="da">Ich wasche <b>mir</b> die Hände.<br><span class="zh">我给自己洗手。</span></td></tr>
-          <tr><td>kaufen</td><td class="ak">— (可说:kaufe wen/was?)</td><td class="da">Ich kaufe <b>mir</b> ein Buch.<br><span class="zh">我给自己买书。</span></td></tr>
-          <tr><td>vorstellen</td><td class="ak">—</td><td class="da">Ich stelle <b>mir</b> das vor.<br><span class="zh">我想象一下。</span></td></tr>
-          <tr><td>merken</td><td class="ak">—</td><td class="da">Ich merke <b>mir</b> die Adresse.<br><span class="zh">我记住地址。</span></td></tr>
-        </tbody>
-      </table>
-      <div style="padding:6px 10px;background:var(--papier);border-radius:var(--radius);font-size:.74rem;margin-top:4px">
-        💡 <strong>规律：</strong>Akk — 动作作用于自身身体/自我；Dat — 为自己做、为自己记、为自己买
-      </div>
+<!-- ===== SLIDE 03 · Tabelle (slide 3) ===== -->
+<div class="slide" data-slide="3">
+  <div class="slide-inner">
+    <div class="slide-tag">03 · Tabelle</div>
+    <h2 style="font-size:1.3rem;margin-bottom:6px">对照表 · 规律总结</h2>
+    <p style="font-size:.82rem;color:var(--grau);margin-bottom:8px">完整对照 + 同一动词 Akk/Dat 两种用法的对比</p>
+
+    <h3 style="font-size:.86rem;margin-bottom:6px">📊 完整对照表</h3>
+    <table class="pronoun-table">
+      <thead><tr><th>人称</th><th>Akkusativ</th><th>Dativ</th></tr></thead>
+      <tbody>
+        <tr><td>ich</td><td>mich</td><td>mir</td></tr>
+        <tr><td>du</td><td>dich</td><td>dir</td></tr>
+        <tr><td>er/sie/es</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
+        <tr><td>wir</td><td>uns</td><td>uns</td></tr>
+        <tr><td>ihr</td><td>euch</td><td>euch</td></tr>
+        <tr><td>sie/Sie</td><td class="hl-red">sich</td><td class="hl-red">sich</td></tr>
+      </tbody>
+    </table>
+    <div style="padding:6px 10px;background:var(--papier);border-radius:var(--radius);font-size:.76rem;margin-bottom:10px">🔑 第三人称不分格（都是 sich），第一、二人称需区分 Akk / Dat</div>
+
+    <h3 style="font-size:.86rem;margin-bottom:6px;color:var(--schwarz)">⚖️ Akkusativ vs Dativ 同一动词对比</h3>
+    <p style="font-size:.76rem;color:var(--grau);margin-bottom:6px">同一动词，Akk 和 Dat 意思不同：</p>
+    <table class="comp-table">
+      <thead><tr><th>动词</th><th style="color:var(--rot)">Akkusativ</th><th style="color:var(--grau)">Dativ</th></tr></thead>
+      <tbody>
+        <tr><td>waschen</td><td class="ak">Ich wasche <b>mich</b>.<br><span class="zh">我洗(自己)</span></td><td class="da">Ich wasche <b>mir</b> die Hände.<br><span class="zh">给自己洗手</span></td></tr>
+        <tr><td>kaufen</td><td class="ak">—</td><td class="da">Ich kaufe <b>mir</b> ein Buch.<br><span class="zh">给自己买书</span></td></tr>
+        <tr><td>vorstellen</td><td class="ak">—</td><td class="da">Ich stelle <b>mir</b> das vor.<br><span class="zh">想象</span></td></tr>
+        <tr><td>merken</td><td class="ak">—</td><td class="da">Ich merke <b>mir</b> die Adresse.<br><span class="zh">记住地址</span></td></tr>
+      </tbody>
+    </table>
+    <div style="padding:6px 10px;background:var(--papier);border-radius:var(--radius);font-size:.74rem">
+      💡 <strong>规律：</strong>Akk → 动作作用于自身身体；Dat → 为自己做、为自己记
     </div>
 
     <div class="nav-row">
-      <button class="nav-btn" onclick="prevSlide()">← Einstieg</button>
-      <span class="nav-counter">3 / 8</span>
+      <button class="nav-btn" onclick="prevSlide()">← Pronomen</button>
+      <span class="nav-counter">4 / 11</span>
       <button class="nav-btn" onclick="nextSlide()">Typen →</button>
     </div>
   </div>
 </div>
 
 <!-- ===== SLIDE 03 · Typen (slide 3) ===== -->
-<div class="slide" data-slide="3">
+<div class="slide" data-slide="4">
   <div class="slide-inner">
-    <div class="slide-tag">03 · Typen</div>
+    <div class="slide-tag">04 · Typen</div>
     <h2 style="font-size:1.3rem;margin-bottom:6px">真反身 vs 假反身</h2>
     <p style="font-size:.82rem;color:var(--grau);margin-bottom:6px">判断下面动词，点击选择类别。</p>
 
@@ -341,19 +350,19 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     </div>
 
     <div class="nav-row">
-      <button class="nav-btn" onclick="prevSlide()">← Entdeckung</button>
-      <span class="nav-counter">4 / 8</span>
-      <button class="nav-btn" onclick="nextSlide()">Position →</button>
+      <button class="nav-btn" onclick="prevSlide()">← Tabelle</button>
+      <span class="nav-counter">5 / 11</span>
+      <button class="nav-btn" onclick="nextSlide()">Position (1/2) →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SLIDE 04 · Position (slide 4) ===== -->
-<div class="slide" data-slide="4">
+<!-- ===== SLIDE 05 · Position 1 (slide 5) ===== -->
+<div class="slide" data-slide="5">
   <div class="slide-inner">
-    <div class="slide-tag">04 · Position</div>
+    <div class="slide-tag">05 · Position (1/2)</div>
     <h2 style="font-size:1.3rem;margin-bottom:6px"><em>sich</em> 的位置规则</h2>
-    <p style="font-size:.82rem;color:var(--grau);margin-bottom:8px">三种句式，三种位置。填入正确反身代词。</p>
+    <p style="font-size:.82rem;color:var(--grau);margin-bottom:6px"><em>sich</em> 放在哪里？先看两种基本句式。</p>
 
     <div class="pos-box">
       <h4>📰 简单陈述句</h4><div class="pos-rule-desc"><em>sich</em> 紧跟在变位动词之后</div>
@@ -373,8 +382,23 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       </div>
     </div>
 
+    <div class="nav-row">
+      <button class="nav-btn" onclick="prevSlide()">← Typen</button>
+      <span class="nav-counter">6 / 11</span>
+      <button class="nav-btn" onclick="nextSlide()">Position (2/2) →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 06 · Position 2 (slide 6) ===== -->
+<div class="slide" data-slide="6">
+  <div class="slide-inner">
+    <div class="slide-tag">06 · Position (2/2)</div>
+    <h2 style="font-size:1.3rem;margin-bottom:6px">从句中的 <em>sich</em></h2>
+    <p style="font-size:.82rem;color:var(--grau);margin-bottom:6px">在从句（dass, weil 等）中，sich 的位置不同。填入答案。</p>
+
     <div class="pos-box">
-      <h4>📎 从句</h4><div class="pos-rule-desc"><em>sich</em> 在连词+主语之后，动词在句末</div>
+      <h4>📎 从句规则</h4><div class="pos-rule-desc"><em>sich</em> 在连词+主语之后，动词（变位形式）在句末</div>
       <div class="pos-example">Ich glaube, dass er <span class="sich-hl">sich</span> freut.</div>
       <div class="input-grid">
         <div class="input-item"><label>她说我们该抓紧。</label><input class="pos-input" data-a="uns" placeholder="Sie sagt, dass wir ___ beeilen." oninput="cPos(this)"><div class="pos-check"></div></div>
@@ -382,18 +406,20 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       </div>
     </div>
 
+    <div class="zitat">„Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt."<div class="author">— Ludwig Wittgenstein</div></div>
+
     <div class="nav-row">
-      <button class="nav-btn" onclick="prevSlide()">← Typen</button>
-      <span class="nav-counter">5 / 8</span>
+      <button class="nav-btn" onclick="prevSlide()">← Position (1/2)</button>
+      <span class="nav-counter">7 / 11</span>
       <button class="nav-btn" onclick="nextSlide()">Werkstatt →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SLIDE 05 · Werkstatt (slide 5) ===== -->
-<div class="slide" data-slide="5">
+<!-- ===== SLIDE 07 · Werkstatt (slide 7) ===== -->
+<div class="slide" data-slide="7">
   <div class="slide-inner">
-    <div class="slide-tag">05 · Werkstatt</div>
+    <div class="slide-tag">07 · Werkstatt</div>
     <h2 style="font-size:1.3rem;margin-bottom:6px">📝 Ein Tag in Berlin</h2>
     <p style="font-size:.82rem;color:var(--grau);margin-bottom:6px">用反身动词写一段柏林日常。点击下方词汇插入。</p>
     <div class="beispiel-box">
@@ -404,17 +430,17 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     <textarea class="werkstatt-ta" id="werkstattInput" placeholder="Schreib deinen eigenen Text..." oninput="updChars()"></textarea>
     <div class="char-count" id="charCnt">0</div>
     <div class="nav-row">
-      <button class="nav-btn" onclick="prevSlide()">← Position</button>
-      <span class="nav-counter">6 / 8</span>
+      <button class="nav-btn" onclick="prevSlide()">← Position (2/2)</button>
+      <span class="nav-counter">8 / 11</span>
       <button class="nav-btn" onclick="nextSlide()">Karten →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SLIDE 06 · Karten (slide 6) ===== -->
-<div class="slide" data-slide="6">
+<!-- ===== SLIDE 08 · Karten (slide 8) ===== -->
+<div class="slide" data-slide="8">
   <div class="slide-inner">
-    <div class="slide-tag">06 · Karten</div>
+    <div class="slide-tag">08 · Karten</div>
     <h2 style="font-size:1.3rem;margin-bottom:6px">🃏 Notfall-Karten</h2>
     <p style="font-size:.82rem;color:var(--grau);margin-bottom:2px">B1 反身动词，点击翻转看例句。</p>
     <div class="game-progress" id="gameProgress">0 / 0</div>
@@ -425,14 +451,14 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     </div>
     <div class="nav-row">
       <button class="nav-btn" onclick="prevSlide()">← Werkstatt</button>
-      <span class="nav-counter">7 / 8</span>
+      <span class="nav-counter">9 / 11</span>
       <button class="nav-btn" onclick="nextSlide()">Ende →</button>
     </div>
   </div>
 </div>
 
-<!-- ===== END (slide 7) ===== -->
-<div class="slide" data-slide="7">
+<!-- ===== END (slide 9) ===== -->
+<div class="slide" data-slide="9">
   <div class="slide-inner" style="background:var(--papier-warm)">
     <div class="end-page">
       <div class="end-icon">🎯</div>
@@ -467,7 +493,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     </div>
     <div class="nav-row" style="border:none;margin-top:2px;padding-top:0">
       <button class="nav-btn" onclick="prevSlide()">← Karten</button>
-      <span class="nav-counter">8 / 8</span>
+      <span class="nav-counter">10 / 11</span>
       <button class="nav-btn" onclick="goSlide(0)">🔁 Wiederholen</button>
     </div>
   </div>
