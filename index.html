@@ -299,7 +299,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
       <tbody>
         <tr><td>waschen</td><td class="ak">Ich wasche <b>mich</b>.<br><span class="zh">我洗(自己)</span></td><td class="da">Ich wasche <b>mir</b> die Hände.<br><span class="zh">给自己洗手</span></td></tr>
         <tr><td>kaufen</td><td class="ak">—</td><td class="da">Ich kaufe <b>mir</b> ein Buch.<br><span class="zh">给自己买书</span></td></tr>
-        <tr><td>vorstellen</td><td class="ak">—</td><td class="da">Ich stelle <b>mir</b> das vor.<br><span class="zh">想象</span></td></tr>
+        <tr><td>vorstellen</td><td class="ak">Ich stelle <b>mich</b> vor.<br><span class="zh">自我介绍</span></td><td class="da">Ich stelle <b>mir</b> das vor.<br><span class="zh">想象</span></td></tr>
         <tr><td>merken</td><td class="ak">—</td><td class="da">Ich merke <b>mir</b> die Adresse.<br><span class="zh">记住地址</span></td></tr>
       </tbody>
     </table>
@@ -424,7 +424,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     <p style="font-size:.82rem;color:var(--grau);margin-bottom:6px">用反身动词写一段柏林日常。点击下方词汇插入。</p>
     <div class="beispiel-box">
       <span style="font-size:.74rem;font-weight:600">📋 范文：</span><br>
-      <span class="de">Ich <b>wasche mich</b>, ziehe <b>mir</b> den Mantel an. In der U-Bahn <b>setze ich mich</b> ans Fenster und <b>freue mich</b> auf den Tag. Im Café bestelle ich <b>mir</b> Latte. Am Abend <b>treffe ich mich</b> mit Freunden. Ich <b>fühle mich</b> wohl in Berlin.</span>
+      <span class="de">Ich <b>wasche mich</b>, ziehe <b>mir</b> den Mantel an. In der U-Bahn <b>setze ich mich</b> ans Fenster und <b>freue mich</b> auf den Tag. Im Café bestelle ich <b>mir</b> einen Latte. Am Abend <b>treffe ich mich</b> mit Freunden. Ich <b>fühle mich</b> wohl in Berlin.</span>
     </div>
     <div class="word-bank" id="wordBank"></div>
     <textarea class="werkstatt-ta" id="werkstattInput" placeholder="Schreib deinen eigenen Text..." oninput="updChars()"></textarea>
@@ -605,7 +605,7 @@ words.forEach(w=>{let c=document.createElement('span');c.className='chip';c.text
 function updChars(){document.getElementById('charCnt').textContent=document.getElementById('werkstattInput').value.length+' 字符'}
 
 // ===== SLIDE 06: Cards =====
-const deck=[{v:'sich freuen',m:'感到高兴',e:'Ich freue mich auf den Urlaub.',i:'😊'},{v:'sich beeilen',m:'赶紧',e:'Wir müssen uns beeilen.',i:'🏃'},{v:'sich interessieren',m:'感兴趣',e:'Sie interessiert sich für Kunst.',i:'🎨'},{v:'sich konzentrieren',m:'集中注意力',e:'Ich konzentriere mich auf die Arbeit.',i:'🎯'},{v:'sich ausruhen',m:'休息',e:'Nach der Arbeit ruhe ich mich aus.',i:'😌'},{v:'sich erinnern',m:'记起',e:'Er erinnert sich an unsere Reise.',i:'🧠'},{v:'sich auskennen',m:'熟悉',e:'Ich kenne mich in Berlin aus.',i:'🗺️'},{v:'sich verlieben',m:'爱上',e:'Sie hat sich in Berlin verliebt.',i:'💛'},{v:'sich anmelden',m:'报名',e:'Ich melde mich zum Kurs an.',i:'📝'},{v:'sich etwas vorst.',m:'想象',e:'Ich kann mir das gut vorstellen.',i:'💭'},{v:'sich wehtun',m:'弄伤',e:'Pass auf, sonst tust du dir weh!',i:'🩹'},{v:'sich etwas kaufen',m:'给自己买',e:'Ich kaufe mir ein Berlin-Ticket.',i:'🛍️'},{v:'sich etwas merken',m:'记住',e:'Ich merke mir deine Nummer.',i:'📌'},{v:'sich bedanken',m:'感谢',e:'Ich möchte mich herzlich bedanken.',i:'🙏'},{v:'sich kümmern',m:'关心',e:'Sie kümmert sich um die Gäste.',i:'🤗'}];
+const deck=[{v:'sich freuen',m:'感到高兴',e:'Ich freue mich auf den Urlaub.',i:'😊'},{v:'sich beeilen',m:'赶紧',e:'Wir müssen uns beeilen.',i:'🏃'},{v:'sich interessieren',m:'感兴趣',e:'Sie interessiert sich für Kunst.',i:'🎨'},{v:'sich konzentrieren',m:'集中注意力',e:'Ich konzentriere mich auf die Arbeit.',i:'🎯'},{v:'sich ausruhen',m:'休息',e:'Nach der Arbeit ruhe ich mich aus.',i:'😌'},{v:'sich erinnern',m:'记起',e:'Er erinnert sich an unsere Reise.',i:'🧠'},{v:'sich auskennen',m:'熟悉',e:'Ich kenne mich in Berlin aus.',i:'🗺️'},{v:'sich verlieben',m:'爱上',e:'Sie hat sich in Berlin verliebt.',i:'💛'},{v:'sich anmelden',m:'报名',e:'Ich melde mich zum Kurs an.',i:'📝'},{v:'sich vorstellen (Dat)',m:'想象',e:'Ich kann mir das gut vorstellen.',i:'💭'},{v:'sich wehtun',m:'弄伤',e:'Pass auf, sonst tust du dir weh!',i:'🩹'},{v:'sich etwas kaufen',m:'给自己买',e:'Ich kaufe mir ein Berlin-Ticket.',i:'🛍️'},{v:'sich etwas merken',m:'记住',e:'Ich merke mir deine Nummer.',i:'📌'},{v:'sich bedanken',m:'感谢',e:'Ich möchte mich herzlich bedanken.',i:'🙏'},{v:'sich kümmern',m:'关心',e:'Sie kümmert sich um die Gäste.',i:'🤗'}];
 let flipped=new Set();const cg=document.getElementById('cardGrid');
 deck.forEach((c,i)=>{let el=document.createElement('div');el.className='game-card';el.innerHTML=`<div class="game-inner"><div class="game-front"><div class="icon">${c.i}</div>${c.v}</div><div class="game-back"><div class="verb">${c.v}</div><div class="meaning">${c.m}</div><div class="example">${c.e}</div></div></div>`;el.onclick=()=>{el.classList.toggle('flipped');el.classList.contains('flipped')?flipped.add(i):flipped.delete(i);updGame()};cg.appendChild(el)});
 function updGame(){document.getElementById('gameProgress').textContent=`${flipped.size} / ${deck.length}`}
