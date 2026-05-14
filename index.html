@@ -208,7 +208,7 @@ h1,h2,h3{font-family:'Georgia','Times New Roman','Playfair Display',serif;line-h
     </div>
     <div class="nav-row" style="border:none;margin-top:4px;padding-top:0">
       <div></div>
-      <span class="nav-counter" style="font-size:.65rem">8 Seiten · ← → 翻页</span>
+      <span class="nav-counter" style="font-size:.65rem">11 Seiten · ← → 翻页</span>
     </div>
   </div>
 </div>
@@ -541,6 +541,7 @@ function revealScene(id){
 // Attach highlight click
 document.addEventListener('click',function(e){
   if(e.target.classList.contains('highlight-word')){
+    e.stopPropagation();
     const txt=e.target.textContent;
     const note=document.getElementById('explainBox');
     note.classList.add('visible');
@@ -575,8 +576,9 @@ function classify(type){
   const item=classifyList[clsIdx];
   const fb=document.getElementById('classifyFb');
   const right=item.t===type;
-  if(right){clsCorrect++;clsResults[type].push(item.v);fb.innerHTML='✅ Richtig!<br><span style=font-size:.78rem;color:var(--grau)>'+item.r+'</span>';fb.className='classify-fb ok'}
+  if(right){clsCorrect++;fb.innerHTML='✅ Richtig!<br><span style=font-size:.78rem;color:var(--grau)>'+item.r+'</span>';fb.className='classify-fb ok'}
   else{fb.innerHTML='❌ Falsch!<br><span style=font-size:.78rem;color:var(--grau)>'+item.r+'</span>';fb.className='classify-fb err'}
+  clsResults[item.t].push(item.v);
   clsDone.push(item);
   clsIdx++;
   document.getElementById('classifyProg').textContent=`${clsCorrect} / ${clsDone.length} 正确 · ${clsIdx} / ${classifyList.length}`;
@@ -613,7 +615,7 @@ function cPos(el){
 // ===== SLIDE 05: Werkstatt =====
 const words=[{t:'mich',h:'ich Akk'},{t:'dich',h:'du Akk'},{t:'sich',h:'er/sie/es'},{t:'uns',h:'wir'},{t:'euch',h:'ihr'},{t:'mir',h:'ich Dat'},{t:'dir',h:'du Dat'},{t:'freue mich',h:'感到高兴'},{t:'beeile mich',h:'赶紧'},{t:'fühle mich',h:'感觉'},{t:'treffe mich',h:'见面'},{t:'setze mich',h:'坐下'},{t:'wasche mich',h:'洗漱'},{t:'interessiere mich',h:'感兴趣'}];
 const wb=document.getElementById('wordBank');
-words.forEach(w=>{let c=document.createElement('span');c.className='chip';c.textContent=w.t;c.title=w.h;c.onclick=()=>{let ta=document.getElementById('werkstattInput');ta.value+=w.t+' ';ta.focus();updChars();c.classList.add('used')};wb.appendChild(c)});
+words.forEach(w=>{let c=document.createElement('span');c.className='chip';c.textContent=w.t;c.title=w.h;c.onclick=()=>{let ta=document.getElementById('werkstattInput');let s=ta.selectionStart;let pre=ta.value.slice(0,s);let post=ta.value.slice(s);ta.value=pre+w.t+' '+post;ta.selectionStart=ta.selectionEnd=s+w.t.length+1;ta.focus();updChars();c.classList.add('used')};wb.appendChild(c)});
 function updChars(){document.getElementById('charCnt').textContent=document.getElementById('werkstattInput').value.length+' 字符'}
 
 // ===== SLIDE 06: Cards =====
